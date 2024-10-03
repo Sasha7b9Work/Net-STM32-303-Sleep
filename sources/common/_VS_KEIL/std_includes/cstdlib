@@ -1,0 +1,8 @@
+#pragma once
+
+namespace std
+{
+    unsigned int rand();
+    int atoi(char *);
+    #include "stdlib.h"
+}
