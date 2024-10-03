@@ -1,5 +1,7 @@
 *.scvd
 
+sources/generated/
+
 sources/Sleep/Listings/
 sources/Sleep/Listings-Debug/
 sources/Sleep/Objects/
