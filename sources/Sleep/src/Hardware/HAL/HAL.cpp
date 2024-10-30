@@ -2,7 +2,6 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
 #include "Utils/Math.h"
-#include "Modules/HI50/HI50.h"
 #include <stm32f3xx_hal.h>
 #include <cstring>
 
@@ -27,18 +26,6 @@ void HAL::Init()
     __HAL_RCC_RTC_ENABLE();
     __HAL_RCC_I2C1_CLK_ENABLE();
     __HAL_RCC_ADC1_CLK_ENABLE();
-
-//    __HAL_RCC_WWDG_CLK_ENABLE();
-
-    HAL_I2C1::Init();
-
-    HAL_RTC::Init();
-
-    HAL_ADC::Init();
-
-    HAL_SPI1::Init();
-
-    HAL_USART1::Init(HI50::CallbackOnReceive);
 }
 
 

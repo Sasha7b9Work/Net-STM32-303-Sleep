@@ -2,8 +2,7 @@
 #include "defines.h"
 #include "Hardware/Keyboard.h"
 #include "Hardware/Timer.h"
-#include "Menu/Menu.h"
-#include "Modules/L00256L/L00256L.h"
+#include "Hardware/HAL/HAL_PINS.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -69,7 +68,6 @@ void Keyboard::UpdateKey(const Key &k)
     {
         if (key.meter.ElapsedTime() > TIME_LONG_PRESS && !key.taboo_long)
         {
-            Menu::LongPress(k);
             key.taboo_long = true;
         }
         else
@@ -80,7 +78,7 @@ void Keyboard::UpdateKey(const Key &k)
                 key.meter.Reset();
                 if (!key.taboo_long)
                 {
-                    Menu::ShortPress(k);
+
                 }
                 key.taboo_long = false;
             }
@@ -109,18 +107,11 @@ bool Key::IsPressed() const
 }
 
 
-void HAL_GPIO_EXTI_Callback(uint16_t pin)
+void HAL_GPIO_EXTI_Callback(uint16_t /*pin*/)
 {
-    if (pin == GPIO_PIN_0)
-    {
-        L00256L::CallbackOnInterrupt();
-    }
-    else
-    {
-        Keyboard::IT::pressed[Key::_1] = pinKey1.IsLow();
+    Keyboard::IT::pressed[Key::_1] = pinKey1.IsLow();
 
-        Keyboard::IT::pressed[Key::_2] = pinKey2.IsLow();
-    }
+    Keyboard::IT::pressed[Key::_2] = pinKey2.IsLow();
 }
 
 

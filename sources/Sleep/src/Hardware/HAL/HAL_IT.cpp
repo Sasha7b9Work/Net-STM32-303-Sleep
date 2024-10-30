@@ -1,7 +1,5 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
-#include "Hardware/Beeper.h"
-#include "Modules/HI50/HI50.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -78,49 +76,6 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
     HAL_IncTick();
-}
-
-
-void USART1_IRQHandler(void)
-{
-    HAL_UART_IRQHandler((UART_HandleTypeDef *)HAL_USART1::handle);
-}
-
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *handle)
-{
-    if (handle == HAL_USART1::handle)
-    {
-        //HAL_USART_HI50::ReceiveCallback((uint8)(READ_BIT(USART1->RDR, USART_RDR_RDR) & 0xFFU));
-        
-        HAL_USART1::ReceiveCallback();
-    }
-}
-
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef *)
-{
-}
-
-
-void ADC1_2_IRQHandler(void)
-{
-    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC::handle);
-}
-
-
-void TIM3_IRQHandler(void)
-{
-    HAL_TIM_IRQHandler((TIM_HandleTypeDef *)Beeper::handleTIM3);
-}
-
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //-V2009
-{
-    if (htim == Beeper::handleTIM3)
-    {
-        Beeper::CallbackOnTimer();
-    }
 }
 
 

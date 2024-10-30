@@ -547,71 +547,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Display</GroupName>
-          <Files>
-            <File>
-              <FileName>Colors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Colors.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Colors.h</FilePath>
-            </File>
-            <File>
-              <FileName>Display.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Display.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Display.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Display.h</FilePath>
-            </File>
-            <File>
-              <FileName>Zones.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Zones.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Zones.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Zones.h</FilePath>
-            </File>
-            <File>
-              <FileName>StartScreen.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\StartScreen.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>StartScreen.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\StartScreen.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Display/Font</GroupName>
-          <Files>
-            <File>
-              <FileName>Font.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Font\Font.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Font.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Font\Font.h</FilePath>
-            </File>
-            <File>
-              <FileName>font8.inc</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Font\font8.inc</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
@@ -625,16 +560,6 @@
               <FilePath>.\src\Hardware\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>InterCom.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\InterCom.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>InterCom.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\InterCom.h</FilePath>
-            </File>
-            <File>
               <FileName>Keyboard.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Keyboard.cpp</FilePath>
@@ -643,26 +568,6 @@
               <FileName>Keyboard.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Keyboard.h</FilePath>
-            </File>
-            <File>
-              <FileName>Beeper.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Beeper.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Beeper.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Beeper.h</FilePath>
-            </File>
-            <File>
-              <FileName>EnergySwitch.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\EnergySwitch.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EnergySwitch.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\EnergySwitch.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -695,11 +600,6 @@
               <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_I2C.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_I2C.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_IT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
@@ -710,21 +610,6 @@
               <FilePath>.\src\Hardware\HAL\HAL_CONF.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_RTC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_RTC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ROM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_ROM.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ADC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_ADC.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_PINS.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_PINS.cpp</FilePath>
@@ -733,297 +618,6 @@
               <FileName>HAL_PINS.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_PINS.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_SPI1.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_SPI1.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_IWDG.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_IWDG.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_USART1.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_USART1.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Menu</GroupName>
-          <Files>
-            <File>
-              <FileName>Menu.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Menu.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Menu.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Menu.h</FilePath>
-            </File>
-            <File>
-              <FileName>MenuItems.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItems.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MenuItems.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\MenuItems.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Menu/Pages</GroupName>
-          <Files>
-            <File>
-              <FileName>PageDisplay.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDisplay.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageHC12.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageHC12.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Pages.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Pages.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Pages.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\Pages.h</FilePath>
-            </File>
-            <File>
-              <FileName>PageSystem.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageSystem.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageMeasures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageMeasures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDataBase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDataBase.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDataBaseBrowsing.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDataBaseBrowsing.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDataBaseSettings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDataBaseSettings.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/BH1750</GroupName>
-          <Files>
-            <File>
-              <FileName>BH1750.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>BH1750.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/BME280</GroupName>
-          <Files>
-            <File>
-              <FileName>BME280.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\BME280\BME280.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>BME280.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BME280\BME280.h</FilePath>
-            </File>
-            <File>
-              <FileName>bme280_defs.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BME280\bme280_defs.h</FilePath>
-            </File>
-            <File>
-              <FileName>bme280_driver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Modules\BME280\bme280_driver.c</FilePath>
-            </File>
-            <File>
-              <FileName>bme280_driver.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BME280\bme280_driver.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/HC12</GroupName>
-          <Files>
-            <File>
-              <FileName>HC12.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HC12.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/HI50</GroupName>
-          <Files>
-            <File>
-              <FileName>HI50.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\HI50\HI50.cpp</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>2</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>1</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
-              <FileName>HI50.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\HI50\HI50.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/L00256L</GroupName>
-          <Files>
-            <File>
-              <FileName>L00256L.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\L00256L\L00256L.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>L00256L.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\L00256L\L00256L.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/ST7735</GroupName>
-          <Files>
-            <File>
-              <FileName>ST7735.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\ST7735\ST7735.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ST7735.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\ST7735\ST7735.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SCPI</GroupName>
-          <Files>
-            <File>
-              <FileName>SCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\SCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\SCPI.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Settings</GroupName>
-          <Files>
-            <File>
-              <FileName>Settings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\Settings.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Settings.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\Settings.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Storage</GroupName>
-          <Files>
-            <File>
-              <FileName>Measures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Storage\Measures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Measures.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Storage\Measures.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1046,64 +640,9 @@
               <FilePath>.\src\Utils\Math.cpp</FilePath>
             </File>
             <File>
-              <FileName>Values.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Values.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Values.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Values.h</FilePath>
-            </File>
-            <File>
-              <FileName>Debug.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Debug.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Debug.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Debug.h</FilePath>
-            </File>
-            <File>
               <FileName>RingBuffer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\RingBuffer.h</FilePath>
-            </File>
-            <File>
-              <FileName>Log.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Log.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Log.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Log.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Utils/Text</GroupName>
-          <Files>
-            <File>
-              <FileName>String.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Text\String.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>String.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Text\String.h</FilePath>
-            </File>
-            <File>
-              <FileName>Text.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Text\Text.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Text\Text.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1675,71 +1214,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Display</GroupName>
-          <Files>
-            <File>
-              <FileName>Colors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Colors.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Colors.h</FilePath>
-            </File>
-            <File>
-              <FileName>Display.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Display.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Display.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Display.h</FilePath>
-            </File>
-            <File>
-              <FileName>Zones.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Zones.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Zones.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Zones.h</FilePath>
-            </File>
-            <File>
-              <FileName>StartScreen.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\StartScreen.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>StartScreen.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\StartScreen.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Display/Font</GroupName>
-          <Files>
-            <File>
-              <FileName>Font.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Font\Font.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Font.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Font\Font.h</FilePath>
-            </File>
-            <File>
-              <FileName>font8.inc</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Font\font8.inc</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
@@ -1753,16 +1227,6 @@
               <FilePath>.\src\Hardware\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>InterCom.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\InterCom.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>InterCom.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\InterCom.h</FilePath>
-            </File>
-            <File>
               <FileName>Keyboard.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Keyboard.cpp</FilePath>
@@ -1771,26 +1235,6 @@
               <FileName>Keyboard.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Keyboard.h</FilePath>
-            </File>
-            <File>
-              <FileName>Beeper.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Beeper.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Beeper.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Beeper.h</FilePath>
-            </File>
-            <File>
-              <FileName>EnergySwitch.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\EnergySwitch.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EnergySwitch.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\EnergySwitch.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1823,11 +1267,6 @@
               <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_I2C.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_I2C.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_IT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
@@ -1838,21 +1277,6 @@
               <FilePath>.\src\Hardware\HAL\HAL_CONF.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_RTC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_RTC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ROM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_ROM.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ADC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_ADC.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_PINS.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_PINS.cpp</FilePath>
@@ -1861,297 +1285,6 @@
               <FileName>HAL_PINS.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_PINS.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_SPI1.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_SPI1.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_IWDG.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_IWDG.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_USART1.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_USART1.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Menu</GroupName>
-          <Files>
-            <File>
-              <FileName>Menu.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Menu.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Menu.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Menu.h</FilePath>
-            </File>
-            <File>
-              <FileName>MenuItems.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItems.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MenuItems.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\MenuItems.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Menu/Pages</GroupName>
-          <Files>
-            <File>
-              <FileName>PageDisplay.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDisplay.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageHC12.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageHC12.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Pages.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Pages.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Pages.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\Pages.h</FilePath>
-            </File>
-            <File>
-              <FileName>PageSystem.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageSystem.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageMeasures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageMeasures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDataBase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDataBase.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDataBaseBrowsing.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDataBaseBrowsing.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDataBaseSettings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDataBaseSettings.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/BH1750</GroupName>
-          <Files>
-            <File>
-              <FileName>BH1750.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>BH1750.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/BME280</GroupName>
-          <Files>
-            <File>
-              <FileName>BME280.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\BME280\BME280.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>BME280.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BME280\BME280.h</FilePath>
-            </File>
-            <File>
-              <FileName>bme280_defs.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BME280\bme280_defs.h</FilePath>
-            </File>
-            <File>
-              <FileName>bme280_driver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Modules\BME280\bme280_driver.c</FilePath>
-            </File>
-            <File>
-              <FileName>bme280_driver.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\BME280\bme280_driver.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/HC12</GroupName>
-          <Files>
-            <File>
-              <FileName>HC12.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HC12.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/HI50</GroupName>
-          <Files>
-            <File>
-              <FileName>HI50.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\HI50\HI50.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HI50.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\HI50\HI50.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/L00256L</GroupName>
-          <Files>
-            <File>
-              <FileName>L00256L.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\L00256L\L00256L.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>L00256L.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\L00256L\L00256L.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Modules/ST7735</GroupName>
-          <Files>
-            <File>
-              <FileName>ST7735.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\ST7735\ST7735.cpp</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>2</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls>-O0</MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
-              <FileName>ST7735.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\ST7735\ST7735.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SCPI</GroupName>
-          <Files>
-            <File>
-              <FileName>SCPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\SCPI\SCPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SCPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\SCPI\SCPI.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Settings</GroupName>
-          <Files>
-            <File>
-              <FileName>Settings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\Settings.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Settings.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\Settings.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Storage</GroupName>
-          <Files>
-            <File>
-              <FileName>Measures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Storage\Measures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Measures.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Storage\Measures.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2174,64 +1307,9 @@
               <FilePath>.\src\Utils\Math.cpp</FilePath>
             </File>
             <File>
-              <FileName>Values.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Values.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Values.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Values.h</FilePath>
-            </File>
-            <File>
-              <FileName>Debug.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Debug.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Debug.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Debug.h</FilePath>
-            </File>
-            <File>
               <FileName>RingBuffer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\RingBuffer.h</FilePath>
-            </File>
-            <File>
-              <FileName>Log.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Log.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Log.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Log.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Utils/Text</GroupName>
-          <Files>
-            <File>
-              <FileName>String.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Text\String.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>String.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Text\String.h</FilePath>
-            </File>
-            <File>
-              <FileName>Text.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Text\Text.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Text\Text.h</FilePath>
             </File>
           </Files>
         </Group>
