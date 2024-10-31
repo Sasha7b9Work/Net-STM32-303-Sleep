@@ -12,5 +12,10 @@ void HAL_SLEEP::Init()
 
 void HAL_SLEEP::Enter()
 {
+    HAL_SuspendTick();
 
+    HAL_PWR_DisableSleepOnExit();
+
+    // ¬ыбираем этот режим, как наименее потребл€ющий
+    HAL_PWR_EnterSTANDBYMode();
 }

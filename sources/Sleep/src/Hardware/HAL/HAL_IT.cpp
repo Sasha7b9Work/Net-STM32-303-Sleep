@@ -84,6 +84,11 @@ void EXTI0_IRQHandler(void)
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
 }
 
+void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *)
+{
+
+}
+
 #ifdef __cplusplus
 }
 #endif
