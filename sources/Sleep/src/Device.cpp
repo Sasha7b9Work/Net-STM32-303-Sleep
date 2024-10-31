@@ -16,5 +16,7 @@ void Device::Init()
 
 void Device::Update()
 {
+    HAL_SLEEP::Enter();
+
     Keyboard::Update();
 }
