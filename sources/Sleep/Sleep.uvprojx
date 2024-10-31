@@ -646,31 +646,6 @@
             </File>
           </Files>
         </Group>
-        <Group>
-          <GroupName>Hardware/HAL/I2C</GroupName>
-          <Files>
-            <File>
-              <FileName>readme.md</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\readme.md</FilePath>
-            </File>
-            <File>
-              <FileName>sw_i2c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\sw_i2c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>sw_i2c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\sw_i2c.h</FilePath>
-            </File>
-            <File>
-              <FileName>sw_i2c_port_stm32.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\sw_i2c_port_stm32.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
       </Groups>
     </Target>
     <Target>
@@ -1310,31 +1285,6 @@
               <FileName>RingBuffer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\RingBuffer.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Hardware/HAL/I2C</GroupName>
-          <Files>
-            <File>
-              <FileName>readme.md</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\readme.md</FilePath>
-            </File>
-            <File>
-              <FileName>sw_i2c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\sw_i2c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>sw_i2c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\sw_i2c.h</FilePath>
-            </File>
-            <File>
-              <FileName>sw_i2c_port_stm32.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\I2C\sw_i2c_port_stm32.cpp</FilePath>
             </File>
           </Files>
         </Group>

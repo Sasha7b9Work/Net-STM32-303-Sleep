@@ -42,7 +42,6 @@ file(GLOB SRC                   src/*.*)
 file(GLOB HARDWARE              src/Hardware/*.*)
 file(GLOB HARDWARE_CMSIS        src/Hardware/CMSIS/*.*)
 file(GLOB HARDWARE_HAL          src/Hardware/HAL/*.*)
-file(GLOB HARDWARE_HAL_I2C      src/Hardware/HAL/I2C/*.*)
 file(GLOB UTILS                 src/Utils/*.*)
 
 source_group(STM32F3            FILES ${STM32F3})
@@ -50,7 +49,6 @@ source_group(src                FILES ${SRC})
 source_group(Hardware           FILES ${HARDWARE})
 source_group(Hardware/CMSIS     FILES ${HARDWARE_CMSIS})
 source_group(Hardware/HAL       FILES ${HARDWARE_HAL})
-source_group(Hardware/HAL/I2C   FILES ${HARDWARE_HAL_I2C})
 source_group(Utils              FILES ${UTILS})
 
 set_source_files_properties(
@@ -70,6 +68,5 @@ add_library(
     ${HARDWARE}
     ${HARDWARE_CMSIS}
     ${HARDWARE_HAL}
-    ${HARDWARE_HAL_I2C}
     ${UTILS}
 )
