@@ -60,12 +60,6 @@ EndBSPDependencies */
 #include "usbd_ctlreq.h"
 
 
-#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
-    #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
-    #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
-#endif
-
-
 /** @addtogroup STM32_USB_DEVICE_LIBRARY
   * @{
   */
@@ -476,8 +470,6 @@ __ALIGN_BEGIN uint8_t USBD_CDC_OtherSpeedCfgDesc[USB_CDC_CONFIG_DESC_SIZ] __ALIG
   */
 static uint8_t  USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 {
-  (void)cfgidx;
-
   uint8_t ret = 0U;
   USBD_CDC_HandleTypeDef   *hcdc;
 
@@ -556,8 +548,6 @@ static uint8_t  USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
   */
 static uint8_t  USBD_CDC_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 {
-  (void)cfgidx;
-
   uint8_t ret = 0U;
 
   /* Close EP IN */
@@ -687,7 +677,7 @@ static uint8_t  USBD_CDC_Setup(USBD_HandleTypeDef *pdev,
 static uint8_t  USBD_CDC_DataIn(USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
   USBD_CDC_HandleTypeDef *hcdc = (USBD_CDC_HandleTypeDef *)pdev->pClassData;
-  PCD_HandleTypeDef *hpcd = (PCD_HandleTypeDef *)pdev->pData;
+  PCD_HandleTypeDef *hpcd = pdev->pData;
 
   if (pdev->pClassData != NULL)
   {
