@@ -24,3 +24,9 @@ namespace HAL_SLEEP
     // После выхода из спящего режима выполнение продолжится с выхода из этой функции
     void Enter();
 }
+
+
+namespace HAL_RTC
+{
+    void Init();
+}

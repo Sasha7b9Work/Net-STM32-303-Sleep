@@ -11,6 +11,8 @@ void Device::Init()
     HAL::Init();
 
     Keyboard::Init();
+
+    HAL_SLEEP::Init();
 }
 
 
