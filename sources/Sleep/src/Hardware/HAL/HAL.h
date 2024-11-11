@@ -29,4 +29,6 @@ namespace HAL_SLEEP
 namespace HAL_RTC
 {
     void Init();
+
+    void ConfigForSleep();
 }

@@ -22,11 +22,6 @@ void HAL::Init()
     __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOD_CLK_ENABLE();
 
-    __HAL_RCC_SPI1_CLK_ENABLE();
-    __HAL_RCC_RTC_ENABLE();
-    __HAL_RCC_I2C1_CLK_ENABLE();
-    __HAL_RCC_ADC1_CLK_ENABLE();
-
     HAL_RTC::Init();
 }
 

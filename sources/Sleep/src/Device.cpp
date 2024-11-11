@@ -13,12 +13,16 @@ void Device::Init()
     Keyboard::Init();
 
     HAL_SLEEP::Init();
+
+    HAL_RTC::ConfigForSleep();
 }
 
 
 void Device::Update()
 {
     HAL_SLEEP::Enter();
+
+    HAL_RTC::ConfigForSleep();
 
     Keyboard::Update();
 }
