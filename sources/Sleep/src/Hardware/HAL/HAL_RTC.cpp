@@ -39,6 +39,9 @@ void HAL_RTC::Init()
     }
 
     __HAL_RCC_RTC_ENABLE();
+
+    HAL_NVIC_SetPriority(RTC_WKUP_IRQn, 0x0, 0);
+    HAL_NVIC_EnableIRQ(RTC_WKUP_IRQn);
 }
 
 
