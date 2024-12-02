@@ -1,16 +1,27 @@
-#pragma once
+/**
+  ******************************************************************************
+  * @file    stm32f3xx_hal_conf.h
+  * @author  MCD Application Team
+  * @brief   HAL configuration file.
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */ 
+
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM32F3xx_HAL_CONF_H
+#define __STM32F3xx_HAL_CONF_H
 
 #ifdef __cplusplus
  extern "C" {
-#endif
-
-#ifndef WIN32
-    #pragma clang diagnostic ignored "-Wpadded"
-    #pragma clang diagnostic ignored "-Wcovered-switch-default"
-    #pragma clang diagnostic ignored "-Wshorten-64-to-32"
-    #pragma clang diagnostic ignored "-Wcast-align"
-    #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
-    #pragma clang diagnostic ignored "-Wbad-function-cast"
 #endif
 
 /* Exported types ------------------------------------------------------------*/
@@ -20,22 +31,42 @@
 /**
   * @brief This is the list of modules to be used in the HAL driver 
   */
-#define HAL_MODULE_ENABLED  
-#define HAL_UART_MODULE_ENABLED
-#define HAL_GPIO_MODULE_ENABLED
-#define HAL_I2C_MODULE_ENABLED
-#define HAL_PCD_MODULE_ENABLED
+#define HAL_MODULE_ENABLED
+/* #define HAL_ADC_MODULE_ENABLED */
+/* #define HAL_CAN_MODULE_ENABLED */
+/* #define HAL_CAN_LEGACY_MODULE_ENABLED */
+/* #define HAL_CEC_MODULE_ENABLED */
+/* #define HAL_COMP_MODULE_ENABLED */
 #define HAL_CORTEX_MODULE_ENABLED
-#define HAL_DMA_MODULE_ENABLED
+/* #define HAL_CRC_MODULE_ENABLED */
+/* #define HAL_DAC_MODULE_ENABLED */
+/* #define HAL_DMA_MODULE_ENABLED */
 #define HAL_FLASH_MODULE_ENABLED
+/* #define HAL_SRAM_MODULE_ENABLED */
+/* #define HAL_NOR_MODULE_ENABLED */
+/* #define HAL_NAND_MODULE_ENABLED */
+/* #define HAL_PCCARD_MODULE_ENABLED */
 #define HAL_GPIO_MODULE_ENABLED
+#define HAL_EXTI_MODULE_ENABLED
+/* #define HAL_HRTIM_MODULE_ENABLED */
+/* #define HAL_I2C_MODULE_ENABLED */
+/* #define HAL_I2S_MODULE_ENABLED */
+/* #define HAL_IRDA_MODULE_ENABLED */
+/* #define HAL_IWDG_MODULE_ENABLED */
+/* #define HAL_OPAMP_MODULE_ENABLED */
+/* #define HAL_PCD_MODULE_ENABLED */
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_RCC_MODULE_ENABLED
-#define HAL_SPI_MODULE_ENABLED
 #define HAL_RTC_MODULE_ENABLED
-#define HAL_ADC_MODULE_ENABLED
-#define HAL_TIM_MODULE_ENABLED
-#define HAL_IWDG_MODULE_ENABLED
+/* #define HAL_SDADC_MODULE_ENABLED */
+/* #define HAL_SMARTCARD_MODULE_ENABLED */
+/* #define HAL_SMBUS_MODULE_ENABLED */
+/* #define HAL_SPI_MODULE_ENABLED */
+/* #define HAL_TIM_MODULE_ENABLED */
+/* #define HAL_TSC_MODULE_ENABLED */
+/* #define HAL_UART_MODULE_ENABLED */
+/* #define HAL_USART_MODULE_ENABLED */
+/* #define HAL_WWDG_MODULE_ENABLED */
 
 /* ########################## HSE/HSI Values adaptation ##################### */
 /**
@@ -319,7 +350,4 @@
 }
 #endif
 
-#ifdef GUI
-    #include "Hardware/HAL/stm32f3xx_hal_conf_gui.h"
-#endif
-
+#endif /* __STM32F3xx_HAL_CONF_H */

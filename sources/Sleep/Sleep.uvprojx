@@ -323,7 +323,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>1</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>1</uSurpInc>
             <uC99>1</uC99>
@@ -515,144 +515,44 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>main.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\main.cpp</FilePath>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
+              <FileName>main.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\defines.h</FilePath>
+              <FilePath>.\src\main.h</FilePath>
             </File>
             <File>
-              <FileName>Device.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Device.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Device.h</FileName>
+              <FileName>stm32f3xx_hal_conf.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Device.h</FilePath>
+              <FilePath>.\src\stm32f3xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>description.txt</FileName>
+              <FileName>stm32f3xx_hal_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\stm32f3xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\stm32f3xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_it.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\description.txt</FilePath>
-            </File>
-            <File>
-              <FileName>opt.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\opt.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Hardware</GroupName>
-          <Files>
-            <File>
-              <FileName>Timer.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Timer.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Timer.h</FilePath>
-            </File>
-            <File>
-              <FileName>Keyboard.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Keyboard.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Keyboard.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Keyboard.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Hardware/CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_stm32f303xc.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\src\Hardware\CMSIS\startup_stm32f303xc.s</FilePath>
+              <FilePath>.\src\stm32f3xx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f3xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\Hardware\CMSIS\system_stm32f3xx.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Hardware/HAL</GroupName>
-          <Files>
-            <File>
-              <FileName>HAL.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
+              <FilePath>.\src\system_stm32f3xx.c</FilePath>
             </File>
             <File>
-              <FileName>HAL.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_IT.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_CONF.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_CONF.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_PINS.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_PINS.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_SLEEP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_SLEEP.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_RTC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_RTC.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Utils</GroupName>
-          <Files>
-            <File>
-              <FileName>Math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Math.h</FilePath>
-            </File>
-            <File>
-              <FileName>Buffer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Buffer.h</FilePath>
-            </File>
-            <File>
-              <FileName>Math.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Math.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>RingBuffer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\RingBuffer.h</FilePath>
+              <FileName>startup_stm32f334x8.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\src\startup_stm32f334x8.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -1167,144 +1067,44 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>main.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\main.cpp</FilePath>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
+              <FileName>main.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\defines.h</FilePath>
+              <FilePath>.\src\main.h</FilePath>
             </File>
             <File>
-              <FileName>Device.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Device.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Device.h</FileName>
+              <FileName>stm32f3xx_hal_conf.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Device.h</FilePath>
+              <FilePath>.\src\stm32f3xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>description.txt</FileName>
+              <FileName>stm32f3xx_hal_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\stm32f3xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\stm32f3xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_it.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\description.txt</FilePath>
-            </File>
-            <File>
-              <FileName>opt.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\opt.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Hardware</GroupName>
-          <Files>
-            <File>
-              <FileName>Timer.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Timer.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Timer.h</FilePath>
-            </File>
-            <File>
-              <FileName>Keyboard.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Keyboard.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Keyboard.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Keyboard.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Hardware/CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_stm32f303xc.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\src\Hardware\CMSIS\startup_stm32f303xc.s</FilePath>
+              <FilePath>.\src\stm32f3xx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f3xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\Hardware\CMSIS\system_stm32f3xx.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Hardware/HAL</GroupName>
-          <Files>
-            <File>
-              <FileName>HAL.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
+              <FilePath>.\src\system_stm32f3xx.c</FilePath>
             </File>
             <File>
-              <FileName>HAL.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_IT.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_CONF.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_CONF.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_PINS.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_PINS.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_SLEEP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_SLEEP.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_RTC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_RTC.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Utils</GroupName>
-          <Files>
-            <File>
-              <FileName>Math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Math.h</FilePath>
-            </File>
-            <File>
-              <FileName>Buffer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Buffer.h</FilePath>
-            </File>
-            <File>
-              <FileName>Math.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Math.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>RingBuffer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\RingBuffer.h</FilePath>
+              <FileName>startup_stm32f334x8.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\src\startup_stm32f334x8.s</FilePath>
             </File>
           </Files>
         </Group>
