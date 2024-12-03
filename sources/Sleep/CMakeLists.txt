@@ -58,6 +58,8 @@ set_source_files_properties(
 
 set_source_files_properties(
     src/Storage/MemoryStorage.cpp
+    ../common/STM32Cube_F3/Drivers/STM32F3xx_HAL_Driver/Src/*.c
+    ../common/STM32Cube_F3/Drivers/STM32F3xx_HAL_Driver/Inc/*.h
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION ON
 )
 

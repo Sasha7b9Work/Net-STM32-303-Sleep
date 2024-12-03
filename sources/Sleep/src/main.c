@@ -1,23 +1,3 @@
-/**
-  ******************************************************************************
-  * @file    PWR/PWR_STANDBY_RTC/Src/main.c
-  * @author  MCD Application Team
-  * @brief   This sample code shows how to use STM32F3xx PWR HAL API to enter
-  *          and exit the Standby mode using RTC.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2016 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
 /** @addtogroup STM32F3xx_HAL_Examples
@@ -43,13 +23,12 @@ static void SystemPower_Config(void);
 static void RTC_Config(void);
 static void Error_Handler(void);
 
-/* Private functions ---------------------------------------------------------*/
 
-/**
-  * @brief  Main program
-  * @param  None
-  * @retval None
-  */
+static void InitPin();
+static void PinToHi();
+static void PinToLow();
+
+
 int main(void)
 {
   /* STM32F3xx HAL library initialization:
@@ -64,6 +43,12 @@ int main(void)
      */
   HAL_Init();
 
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  InitPin();
+
+  PinToHi();
+
   /* Configure the system clock to 64 MHz */
   SystemClock_Config();
 
@@ -74,6 +59,10 @@ int main(void)
   RTC_Config();
   
   /* Insert 5 seconds delay */
+  HAL_Delay(5000);
+
+  PinToLow();
+
   HAL_Delay(5000);
   
   /* The Following Wakeup sequence is highly recommended prior to each Standby mode entry
@@ -271,31 +260,32 @@ static void Error_Handler(void)
   }
 }
 
-#ifdef  USE_FULL_ASSERT
 
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t *file, uint32_t line)
+#define _PIN_ GPIO_PIN_2
+#define _PORT_ GPIOA
+
+
+static void InitPin()
 {
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+    GPIO_InitTypeDef is =
+    {
+        _PIN_,
+        GPIO_MODE_OUTPUT_PP,
+        GPIO_NOPULL,
+        GPIO_SPEED_FREQ_HIGH,
+        0
+    };
 
-  /* Infinite loop */
-  while (1)
-  {
-  }
+    HAL_GPIO_Init(_PORT_, _PIN_);
 }
-#endif
 
-/**
-  * @}
-  */
 
-/**
-  * @}
-  */
+static void PinToLow()
+{
+    HAL_GPIO_WritePin(_PORT_, _PIN_, GPIO_PIN_RESET);
+}
+
+static void PinToHi()
+{
+    HAL_GPIO_WritePin(_PORT_, _PIN_, GPIO_PIN_SET);
+}
