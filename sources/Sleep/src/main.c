@@ -44,6 +44,7 @@ int main(void)
   HAL_Init();
 
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   InitPin();
 
@@ -261,7 +262,7 @@ static void Error_Handler(void)
 }
 
 
-#define _PIN_ GPIO_PIN_2
+#define _PIN_ GPIO_PIN_1
 #define _PORT_ GPIOA
 
 
@@ -271,21 +272,27 @@ static void InitPin()
     {
         _PIN_,
         GPIO_MODE_OUTPUT_PP,
-        GPIO_NOPULL,
+        GPIO_PULLUP,
         GPIO_SPEED_FREQ_HIGH,
         0
     };
 
-    HAL_GPIO_Init(_PORT_, _PIN_);
+    HAL_GPIO_Init(_PORT_, &is);
+
+    is.Pin = GPIO_PIN_2;
+
+    HAL_GPIO_Init(GPIOA, &is);
 }
 
 
 static void PinToLow()
 {
     HAL_GPIO_WritePin(_PORT_, _PIN_, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
 }
 
 static void PinToHi()
 {
     HAL_GPIO_WritePin(_PORT_, _PIN_, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_SET);
 }
