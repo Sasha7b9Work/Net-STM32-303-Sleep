@@ -252,7 +252,7 @@ void HAL_SYSTICK_Callback(void)
   * @param  None
   * @retval None
   */
-static void Error_Handler(void)
+__attribute__ ((noreturn)) static void Error_Handler(void)
 {
   /* Turn on the LED2 */
 //  BSP_LED_On(LED2);

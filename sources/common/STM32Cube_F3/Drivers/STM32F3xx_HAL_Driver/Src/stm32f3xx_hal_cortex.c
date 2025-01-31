@@ -105,11 +105,11 @@
 */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f3xx_hal.h"
-
-#if __ARMCLIB_VERSION >= 6000000
-    #pragma clang diagnostic ignored "-Wmissing-noreturn"
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    #pragma clang diagnostic ignored "-Wpadded"
 #endif
+
+#include "stm32f3xx_hal.h"
 
 /** @addtogroup STM32F3xx_HAL_Driver
   * @{
@@ -242,7 +242,7 @@ void HAL_NVIC_DisableIRQ(IRQn_Type IRQn)
   * @brief  Initiates a system reset request to reset the MCU.
   * @retval None
   */
-void HAL_NVIC_SystemReset(void)
+__attribute__ ((noreturn)) void HAL_NVIC_SystemReset(void)
 {
   /* System Reset */
   NVIC_SystemReset();
