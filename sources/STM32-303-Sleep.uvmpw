@@ -5,7 +5,7 @@
 
   <Header>### uVision Project, (C) Keil Software</Header>
 
-  <WorkspaceName>D:\Projects\RES-Network\STM32-303-Sleep\sources\STM32-303-Sleep.uvmpw</WorkspaceName>
+  <WorkspaceName>STM32-303-Sleep</WorkspaceName>
 
   <project>
     <PathAndName>.\Sleep\Sleep.uvprojx</PathAndName>
