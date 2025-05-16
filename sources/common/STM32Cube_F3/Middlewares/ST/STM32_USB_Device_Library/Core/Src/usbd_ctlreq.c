@@ -21,6 +21,10 @@
 #include "usbd_ctlreq.h"
 #include "usbd_ioreq.h"
 
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    #pragma clang diagnostic ignored "-Wunused-parameter"
+#endif
+
 
 /** @addtogroup STM32_USBD_STATE_DEVICE_LIBRARY
   * @{

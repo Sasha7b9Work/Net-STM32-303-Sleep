@@ -59,6 +59,10 @@ EndBSPDependencies */
 #include "usbd_cdc.h"
 #include "usbd_ctlreq.h"
 
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    #pragma clang diagnostic ignored "-Wunused-parameter"
+#endif
+
 
 /** @addtogroup STM32_USB_DEVICE_LIBRARY
   * @{
