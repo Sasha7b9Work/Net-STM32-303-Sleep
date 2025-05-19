@@ -30,6 +30,12 @@
 #endif
 
 
+#ifdef WIN32
+    #define __STATIC_INLINE
+    #define __attribute__(x)
+#endif
+
+
 #ifdef __cplusplus
  extern "C" {
 #endif
