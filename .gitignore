@@ -9,3 +9,10 @@ sources/Sleep/Objects/
 sources/Sleep/Objects-Debug/
 sources/Sleep/DebugConfig/
 sources/Sleep/RTE/
+
+sources/MultiSensors/Objects/
+sources/MultiSensors/Objects-Debug/
+sources/MultiSensors/Listings/
+sources/MultiSensors/Listings-Debug/
+sources/MultiSensors/DebugConfig/
+sources/MultiSensors/RTE/

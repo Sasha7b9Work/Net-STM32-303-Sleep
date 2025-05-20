@@ -5,10 +5,10 @@
 
   <Header>### uVision Project, (C) Keil Software</Header>
 
-  <WorkspaceName>STM32-303-Sleep</WorkspaceName>
+  <WorkspaceName>GTC</WorkspaceName>
 
   <project>
-    <PathAndName>.\Sleep\Sleep.uvprojx</PathAndName>
+    <PathAndName>.\MultiSensors\MultiSensors.uvprojx</PathAndName>
     <NodeIsActive>1</NodeIsActive>
     <NodeIsExpanded>1</NodeIsExpanded>
   </project>
