@@ -3,16 +3,10 @@
 #include "Device.h"
 #include "Modules/BME280/BME280.h"
 #include "Modules/BH1750/BH1750.h"
-#include "Modules/ST7735/ST7735.h"
-#include "Modules/HI50/HI50.h"
 #include "Hardware/Timer.h"
 #include "Hardware/InterCom.h"
-#include "Hardware/Keyboard.h"
-#include "Hardware/Beeper.h"
 #include "Hardware/EnergySwitch.h"
-#include "Menu/Menu.h"
-#include "SCPI/SCPI.h"
-#include "Modules/L00256L/L00256L.h"
+#include "Hardware/HAL/HAL.h"
 
 
 namespace Device
@@ -25,34 +19,18 @@ void Device::Init()
 {
     HAL::Init();
 
-    ST7735::Init();
-
     EnergySwitch::Init();
 
     BME280::Init();                    // Пытаемся инициализировать датчик давления
 
     BH1750::Init();
 
-    if (!BME280::IsInitialized() && !BH1750::IsInitialized())                // Если нет - то освещённость
-    {
-        __HAL_RCC_I2C1_CLK_DISABLE();
+    BME280::IsInitialized();
+    BH1750::IsInitialized();
 
-        if (!HI50::Init())              // Если нет - то датчик дальности
-        {
-            L00256L::Init();
-        }
-    }
+    HAL_USART1::SetModeHC12();
 
-    if (!HI50::IsExist())               // Если обнаружен дальномер, то не включаем HC12 на передачу - HI50 сам будет его включать,
-    {                                   // когда понадобится
-        HAL_USART1::SetModeHC12();
-    }
-
-    Keyboard::Init();
-
-    Beeper::Init();
-
-    InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
+    InterCom::SetDirection((Direction::E)(Direction::HC12));
 }
 
 
@@ -62,8 +40,6 @@ void Device::Update()
     Measure pressure;
     Measure humidity;
     Measure dew_point;
-    Measure illuminate;
-    Measure distance;
 
     uint time = TIME_MS;
 
@@ -75,38 +51,11 @@ void Device::Update()
         ProcessMeasure(dew_point, time);
     }
 
-    if (BH1750::GetMeasure(&illuminate))
-    {
-        ProcessMeasure(illuminate, time);
-    }
-
-    if (HI50::GetMeasure(&distance))
-    {
-        InterCom::SetDirection(Direction::Display);
-        ProcessMeasure(distance, time);
-        InterCom::SetDirection((Direction::E)(Direction::HC12 | Direction::Display));
-    }
-
-    if (!Menu::IsOpened())
-    {
-        Beeper::Update();
-    }
-
-    Keyboard::Update();
-
-    Display::Update(TIME_MS);
-
     HAL_ADC::GetVoltage();
 
     EnergySwitch::Update();
 
     HAL_USART1::Update();
-
-    HI50::Update();
-
-    SCPI::Update();
-
-    L00256L::Update();
 }
 
 

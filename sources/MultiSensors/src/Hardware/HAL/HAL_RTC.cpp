@@ -73,9 +73,3 @@ void HAL_RTC::SetTime(const PackedTime &pack_time)
 
     HAL_RTC_SetDate(&handleRTC, &date, RTC_HOURFORMAT_24);
 }
-
-
-String<> PackedTime::ToString() const
-{
-    return String<>("%02d:%02d:%02d", hours, minutes, seconds);
-}

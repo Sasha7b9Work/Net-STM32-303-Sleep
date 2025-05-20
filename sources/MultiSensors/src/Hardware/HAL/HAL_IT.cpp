@@ -1,7 +1,5 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
-#include "Hardware/Beeper.h"
-#include "Modules/HI50/HI50.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -106,21 +104,6 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *)
 void ADC1_2_IRQHandler(void)
 {
     HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC::handle);
-}
-
-
-void TIM3_IRQHandler(void)
-{
-    HAL_TIM_IRQHandler((TIM_HandleTypeDef *)Beeper::handleTIM3);
-}
-
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) //-V2009
-{
-    if (htim == Beeper::handleTIM3)
-    {
-        Beeper::CallbackOnTimer();
-    }
 }
 
 

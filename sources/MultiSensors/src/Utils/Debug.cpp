@@ -1,6 +1,5 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "Log.h"
 #include "Debug.h"
 #include "Hardware/Timer.h"
 #include "Hardware/HAL/HAL.h"

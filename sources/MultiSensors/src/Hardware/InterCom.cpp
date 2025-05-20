@@ -1,9 +1,6 @@
 // Sasha7b9@tut.by (c)
 #include "defines.h"
 #include "Hardware/InterCom.h"
-#include "Modules/ST7735/ST7735.h"
-#include "Display/Display.h"
-#include "Utils/Text/String.h"
 #include "Utils/Buffer.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
@@ -54,62 +51,13 @@ void InterCom::SetDirection(Direction::E dir)
 
 void InterCom::Send(const Measure &measure, uint timeMS)
 {
-    static const pchar names[Measure::Count] =
-    {
-        "Temperature",
-        "Pressure",
-        "Humidity",
-        "DewPoint",
-        "Velocity",
-        "Latitude",
-        "Longitude",
-        "Altitude",
-        "Azimuth",
-        "Illuminate",
-        "Distance",
-        "RotateAngleRel",
-        "RotateAngleFull",
-        "RotateAngleSpeed"
-    };
-
-    static const pchar units[Measure::Count] =
-    {
-        "degress Celsius",
-        "hPa",
-        "%%",
-        "degress Celsius",
-        "m/s",
-        "degress",
-        "degress",
-        "m",
-        "degress",
-        "lxs",
-        "m",
-        "degrees",
-        "degress",
-        "degress"
-    };
-
-    if (direction & Direction::Display)
-    {
-        if (!Measures::IsFixed())
-        {
-            Display::SetMeasure(measure, timeMS);
-        }
-    }
+    (void)timeMS;
 
     if (direction & Direction::HC12)
     {
         Buffer<20> data = CreateMessage(measure);
 
         HC12::Transmit(data.Data(), 20);
-    }
-
-    if (direction & Direction::CDC)
-    {
-        String<> message("%s : %f %s", names[measure.GetName()], measure.GetDouble(), units[measure.GetName()]);
-
-//        HCDC::Transmit(message.c_str(), message.Size() + 1);
     }
 
 #ifdef GUI

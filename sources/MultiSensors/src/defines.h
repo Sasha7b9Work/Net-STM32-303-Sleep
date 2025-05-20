@@ -88,6 +88,4 @@ typedef void(*pFuncVV)(void);
 
 #define BINARY_U8( bits ) _bitset(0##bits)
 
-
-#include "Utils/Log.h"
 //#include "Utils/Debug.h"

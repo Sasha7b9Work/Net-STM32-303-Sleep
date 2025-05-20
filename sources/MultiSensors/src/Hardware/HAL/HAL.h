@@ -1,6 +1,5 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "Utils/Text/String.h"
 #include "Settings/Settings.h"
 #include "Hardware/HAL/HAL_PINS.h"
 
@@ -15,8 +14,6 @@ struct PackedTime
     uint day : 5;
     PackedTime(uint h = 11, uint m = 11, uint s = 11, uint d = 11, uint mo = 11, uint y = 11) :
         hours(h), minutes(m), seconds(s), year(y), month(mo), day(d) {}
-
-    String<> ToString() const;
 
     uint ToSecs() const;
 };
@@ -132,7 +129,6 @@ extern "C" {
     void USART1_IRQHandler(void);
     void USART2_IRQHandler(void);
     void ADC1_2_IRQHandler(void);
-    void TIM3_IRQHandler(void);
     void EXTI1_IRQHandler(void);
     void EXTI9_5_IRQHandler(void);
 

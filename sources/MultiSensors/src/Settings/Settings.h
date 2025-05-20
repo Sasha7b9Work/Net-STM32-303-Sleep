@@ -1,6 +1,6 @@
 // 2022/05/05 15:22:56 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "Display/Display.h"
+#include "Storage/Measures.h"
 
 
 struct TypeDisplayedInformation

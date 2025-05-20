@@ -43,7 +43,6 @@ public:
 
         if (size > size_buffer)
         {
-            LOG_ERROR("%s:%d : Very small buffer %d, need %d", __FILE__, __LINE__, MAX_SIZE, size);
             size = size_buffer;
         }
     }
@@ -81,7 +80,6 @@ public:
     {
         if (_size > Size())
         {
-            LOG_ERROR("%s:%d : Very small buffer %d, need %d", __FILE__, __LINE__, MAX_SIZE, _size);
             _size = Size();
         }
 
@@ -116,7 +114,6 @@ public:
     {
         if (Size() + _size > Capacity())
         {
-            LOG_ERROR("Нет места в буфере");
         }
         else
         {
