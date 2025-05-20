@@ -334,7 +334,7 @@
             <v6LangP>8</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
-            <v6Lto>1</v6Lto>
+            <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
@@ -761,16 +761,6 @@
               <FilePath>.\src\Utils\Math.cpp</FilePath>
             </File>
             <File>
-              <FileName>Values.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Values.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Values.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Values.h</FilePath>
-            </File>
-            <File>
               <FileName>Debug.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\Debug.cpp</FilePath>
@@ -1142,7 +1132,7 @@
             <v6LangP>8</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
-            <v6Lto>1</v6Lto>
+            <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
@@ -1567,16 +1557,6 @@
               <FileName>Math.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\Math.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Values.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Values.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Values.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Values.h</FilePath>
             </File>
             <File>
               <FileName>Debug.cpp</FileName>
