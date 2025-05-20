@@ -31,7 +31,7 @@
 
 
 #ifdef WIN32
-    #define __STATIC_INLINE
+    #define __STATIC_INLINE inline
     #define __attribute__(x)
 #endif
 

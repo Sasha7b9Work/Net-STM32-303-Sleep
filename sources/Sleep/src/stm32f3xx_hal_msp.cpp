@@ -60,6 +60,10 @@
   */
 void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
 {
+#ifdef WIN32
+    (void)hrtc;
+#endif
+
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct;
 
@@ -99,6 +103,10 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
   */
 void HAL_RTC_MspDeInit(RTC_HandleTypeDef *hrtc)
 {
+#ifdef WIN32
+    (void)hrtc;
+#endif
+
   /*##-1- Reset peripherals ##################################################*/
   __HAL_RCC_RTC_DISABLE();
 }

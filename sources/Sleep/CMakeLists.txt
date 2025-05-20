@@ -1,7 +1,7 @@
 # (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 project (Sleep)
 
-#set(CMAKE_UNITY_BUILD OFF)
+set(CMAKE_UNITY_BUILD OFF)
 
 message("------------------------------------------------------------------------ ${PROJECT_NAME}")
 
@@ -52,7 +52,8 @@ source_group(Hardware/HAL       FILES ${HARDWARE_HAL})
 source_group(Utils              FILES ${UTILS})
 
 set_source_files_properties(
-    ${STM32F3} ${HARDWARE_CMSIS}
+    ${STM32F3}
+    ${HARDWARE_CMSIS}
     PROPERTIES HEADER_FILE_ONLY TRUE
 )
 

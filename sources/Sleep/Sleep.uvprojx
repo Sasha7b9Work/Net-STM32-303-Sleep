@@ -516,11 +516,6 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>main.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\main.h</FilePath>
@@ -529,16 +524,6 @@
               <FileName>stm32f3xx_hal_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\stm32f3xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f3xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\stm32f3xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f3xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\stm32f3xx_it.c</FilePath>
             </File>
             <File>
               <FileName>stm32f3xx_it.h</FileName>
@@ -554,6 +539,21 @@
               <FileName>startup_stm32f334x8.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\src\startup_stm32f334x8.s</FilePath>
+            </File>
+            <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\main.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_hal_msp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\stm32f3xx_hal_msp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_it.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\stm32f3xx_it.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1069,11 +1069,6 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>main.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\main.h</FilePath>
@@ -1082,16 +1077,6 @@
               <FileName>stm32f3xx_hal_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\stm32f3xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f3xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\stm32f3xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f3xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\stm32f3xx_it.c</FilePath>
             </File>
             <File>
               <FileName>stm32f3xx_it.h</FileName>
@@ -1107,6 +1092,21 @@
               <FileName>startup_stm32f334x8.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\src\startup_stm32f334x8.s</FilePath>
+            </File>
+            <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\main.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_hal_msp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\stm32f3xx_hal_msp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f3xx_it.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\stm32f3xx_it.cpp</FilePath>
             </File>
           </Files>
         </Group>
