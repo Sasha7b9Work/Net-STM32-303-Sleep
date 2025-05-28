@@ -5,4 +5,6 @@
 namespace EnergySwitch
 {
     void Init();
+
+    void TurnOff();
 }
