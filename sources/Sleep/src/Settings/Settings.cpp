@@ -3,7 +3,7 @@
 #include "Settings/Settings.h"
 #include "Hardware/HAL/HAL.h"
 #include "Hardware/Timer.h"
-#include <string>
+#include <cstring>
 
 
 static const Settings def_set =

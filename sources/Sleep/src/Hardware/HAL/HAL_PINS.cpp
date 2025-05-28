@@ -4,11 +4,6 @@
 #include <stm32f3xx_hal.h>
 
 
-PinInput    pinPowerIn(GPIOA, GPIO_PIN_8, GPIO_PULLDOWN);
-PinOutputPP pinPowerOut(GPIOB, GPIO_PIN_10, GPIO_PULLDOWN);
-PinOutputPP pinOUT(GPIOB, GPIO_PIN_5, GPIO_PULLUP);
-
-
 Pin         pinWP(GPIOB, GPIO_PIN_0, GPIO_MODE_OUTPUT_PP, GPIO_PULLUP);
 PinOutputPP pinBEEP(GPIOB, GPIO_PIN_4, GPIO_PULLUP);
 PinAnalog   pinADC(GPIOA, GPIO_PIN_3);

@@ -2,7 +2,7 @@
 
 project (Sleep)
 
-set(CMAKE_UNITY_BUILD ON)
+#set(CMAKE_UNITY_BUILD OFF)
 
 message("------------------------------------------------------------------------ ${PROJECT_NAME}")
 

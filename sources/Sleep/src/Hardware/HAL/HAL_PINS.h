@@ -80,7 +80,3 @@ extern Pin         pinRX_NEO_8M;
 
 extern Pin         pinKey1;         // Keyboard
 extern Pin         pinKey2;         // Keyboard
-
-extern PinInput    pinPowerIn;      // Если здесь появляется 1, нужно выключать
-extern PinOutputPP pinPowerOut;     // Подачей сюда 0 производится выключение
-extern PinOutputPP pinOUT;

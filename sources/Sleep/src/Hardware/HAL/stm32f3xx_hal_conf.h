@@ -11,6 +11,8 @@
     #pragma clang diagnostic ignored "-Wcast-align"
     #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
     #pragma clang diagnostic ignored "-Wbad-function-cast"
+#else
+    #define __STATIC_INLINE inline
 #endif
 
 /* Exported types ------------------------------------------------------------*/

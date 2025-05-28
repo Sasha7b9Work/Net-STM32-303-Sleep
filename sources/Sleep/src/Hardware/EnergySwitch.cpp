@@ -7,40 +7,9 @@
 
 void EnergySwitch::Init()
 {
-    pinPowerIn.Init();
-
-    pinPowerOut.Init();
-
-    pinPowerOut.ToHi();
-
-    pinOUT.Init();
 }
 
 
 void EnergySwitch::Update()
 {
-#ifndef WIN32
-
-    if (TIME_MS < 1000)
-    {
-        return;
-    }
-
-    if (pinPowerIn.IsHi())
-    {
-        Timer::Delay(1000);
-
-        pinPowerOut.ToLow();
-    }
-
-    if (pinOUT.IsHi())
-    {
-        pinOUT.ToLow();
-    }
-    else
-    {
-        pinOUT.ToHi();
-    }
-
-#endif
 }
