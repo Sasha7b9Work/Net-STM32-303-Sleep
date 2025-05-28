@@ -1443,9 +1443,7 @@ __STATIC_INLINE uint32_t LL_RCC_GetAPB2Prescaler(void)
   */
 __STATIC_INLINE void LL_RCC_ConfigMCO(uint32_t MCOxSource, uint32_t MCOxPrescaler)
 {
-#ifdef WIN32
     (void)MCOxPrescaler;
-#endif
 
 #if defined(RCC_CFGR_MCOPRE)
 #if defined(RCC_CFGR_PLLNODIV)
