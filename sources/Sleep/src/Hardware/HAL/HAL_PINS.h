@@ -71,9 +71,9 @@ extern PinOutputPP pinCS_ST;        // ST7735
 extern Pin         pinSCL;          // I2C
 extern Pin         pinSDA;          // I2C
 
-extern Pin         pinTX_HC12;
-extern Pin         pinRX_HC12;
-extern PinOutputPP pinCS_HC12;
+extern Pin         pinTX_HC12;      // Соответствует RX на модуле MPU:30:PA9  - HC12:3:RXD
+extern Pin         pinRX_HC12;      // Соответствует TX на модуле MPU:31:PA10 - HC12:4:TXD
+extern PinOutputPP pinCS_HC12;      //                            MPU:20:PB2  - HC12:5:SET
 
 extern Pin         pinTX_NEO_8M;
 extern Pin         pinRX_NEO_8M;

@@ -96,7 +96,13 @@ void HAL_USART1::Init(bool to_HC12)
 
     if (to_HC12)
     {
-        HAL_NVIC_DisableIRQ(USART1_IRQn);
+//        HAL_NVIC_DisableIRQ(USART1_IRQn);
+
+        HAL_NVIC_EnableIRQ(USART1_IRQn);
+
+        HAL_NVIC_SetPriority(USART1_IRQn, 1, 1);
+
+        HAL_UART_Receive_IT(&handleUART, (uint8 *)&recv_byte, 1);
     }
     else
     {
@@ -133,12 +139,24 @@ void HAL_USART1::Send(uint8 byte)
 
 void HAL_USART1::Send(const void *buffer, int size)
 {
-    HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 100);
+    HAL_StatusTypeDef result = HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 100);
+
+    result = result;
 }
 
 
 void HAL_USART1::ReceiveCallback()
 {
+    static char bytes[128];
+    static int pointer = 0;
+
+    bytes[pointer++] = (char)recv_byte;
+
+    if (pointer > 10)
+    {
+        pointer = pointer;
+    }
+
     recv_buffer.Append(recv_byte);
 
     HAL_UART_Receive_IT(&handleUART, &recv_byte, 1);

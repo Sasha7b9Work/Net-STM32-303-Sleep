@@ -39,6 +39,9 @@ namespace HC12
 
 void HC12::Init()
 {
+    pinTX_HC12.Init();
+    pinRX_HC12.Init();
+
     pinCS_HC12.Init();
     pinCS_HC12.ToHi();
 
@@ -50,6 +53,12 @@ void HC12::Init()
 void HC12::Transmit(const void *buffer, int size)
 {
     HAL_USART1::Send(buffer, size);
+}
+
+
+void HC12::TransmitString(pchar message)
+{
+    Transmit(message, (int)std::strlen(message));
 }
 
 

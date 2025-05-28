@@ -12,6 +12,7 @@ static void SystemClock_Config();
 void HAL::Init()
 {
     HAL_Init();
+
     SystemClock_Config();
 
     __HAL_RCC_PWR_CLK_ENABLE();
@@ -27,7 +28,6 @@ void HAL::Init()
     __HAL_RCC_I2C1_CLK_ENABLE();
     __HAL_RCC_ADC1_CLK_ENABLE();
 
-//    __HAL_RCC_WWDG_CLK_ENABLE();
 
     HAL_I2C1::Init();
 
@@ -36,6 +36,10 @@ void HAL::Init()
     HAL_ADC::Init();
 
     HAL_SPI1::Init();
+
+    HAL_USART1::Init(nullptr);
+
+    HAL_USART1::SetModeHC12();
 }
 
 

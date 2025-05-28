@@ -7,6 +7,7 @@
 #include "Hardware/InterCom.h"
 #include "Hardware/EnergySwitch.h"
 #include "Hardware/HAL/HAL.h"
+#include "Modules/HC12/HC12.h"
 
 
 void Device::Init()
@@ -14,10 +15,14 @@ void Device::Init()
     HAL::Init();
 
     EnergySwitch::Init();
+
+    HC12::TransmitString("Device enabled");
 }
 
 
 void Device::Update()
 {
-    EnergySwitch::TurnOff();
+    HC12::TransmitString("Device asleep now");
+
+//    EnergySwitch::TurnOff();
 }

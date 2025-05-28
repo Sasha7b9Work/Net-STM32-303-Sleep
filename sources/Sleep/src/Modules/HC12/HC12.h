@@ -8,6 +8,8 @@ namespace HC12
 
     void Transmit(const void *buffer, int size);
 
+    void TransmitString(pchar);
+
     // ”правл€юща€ команда
     void Command(pchar);
 }
