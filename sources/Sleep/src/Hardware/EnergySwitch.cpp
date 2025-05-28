@@ -7,9 +7,7 @@
 
 void EnergySwitch::Init()
 {
-}
+    pinPower.Init();
 
-
-void EnergySwitch::Update()
-{
+    pinPower.ToHi();        // ѕодаЄм напр€жение на этот вывод, чтобы источник питани€ запитал все узлы устройства
 }

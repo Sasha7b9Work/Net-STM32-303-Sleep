@@ -80,3 +80,5 @@ extern Pin         pinRX_NEO_8M;
 
 extern Pin         pinKey1;         // Keyboard
 extern Pin         pinKey2;         // Keyboard
+
+extern PinOutputPP pinPower;        // —хема запитана, когда на этом выводе 1. ѕеред переходом в сп€щий режим подаЄм сюда 0

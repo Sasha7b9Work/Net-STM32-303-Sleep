@@ -5,6 +5,4 @@
 namespace EnergySwitch
 {
     void Init();
-
-    void Update();
 }
