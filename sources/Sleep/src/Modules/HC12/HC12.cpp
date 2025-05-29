@@ -45,8 +45,14 @@ void HC12::Init()
     pinCS_HC12.Init();
     pinCS_HC12.ToHi();
 
-    Command("AT+DEFAULT");
     Command("AT");
+    Command("AT+V");
+    Command("AT+RC");
+    Command("AT+RF");
+    Command("AT+RC");
+    Command("AT+RC");
+    Command("AT+RC");
+    Command("AT+RC");
 }
 
 

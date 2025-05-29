@@ -16,13 +16,15 @@ void Device::Init()
 
     EnergySwitch::Init();
 
-    HC12::TransmitString("Device enabled");
+    Timer::Delay(25);
+
+    HC12::TransmitString("Device enabled\r");
 }
 
 
 void Device::Update()
 {
-    HC12::TransmitString("Device asleep now");
+    HC12::TransmitString("Device asleep now\r");
 
-//    EnergySwitch::TurnOff();
+    EnergySwitch::TurnOff();
 }

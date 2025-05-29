@@ -152,7 +152,7 @@ void HAL_USART1::ReceiveCallback()
 
     bytes[pointer++] = (char)recv_byte;
 
-    if (pointer > 10)
+    if (pointer > 40)
     {
         pointer = pointer;
     }

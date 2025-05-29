@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -15,6 +16,7 @@ void Timer::Delay(uint delayMS)
 
     while (TIME_MS < end)
     {
+        HAL_USART1::Update();
     }
 }
 
