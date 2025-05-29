@@ -10,6 +10,14 @@
 #include "Modules/HC12/HC12.h"
 
 
+namespace Device
+{
+    static bool bme280_ready = false;
+
+    static void ProcessMeasure(const Measure &, uint time);
+}
+
+
 void Device::Init()
 {
     HAL::Init();
@@ -18,13 +26,51 @@ void Device::Init()
 
     Timer::Delay(25);
 
+    BME280::Init();                    // ѕытаемс€ инициализировать датчик давлени€
+
+    BH1750::Init();
+
+    BME280::IsInitialized();
+    BH1750::IsInitialized();
+    
+    InterCom::SetDirection((Direction::E)(Direction::HC12));
+
     HC12::TransmitString("Device enabled\r");
 }
 
 
 void Device::Update()
 {
-    HC12::TransmitString("Device asleep now\r");
+    Measure temp;
+    Measure pressure;
+    Measure humidity;
+    Measure dew_point;
 
-    EnergySwitch::TurnOff();
+    uint time = TIME_MS;
+
+    if (BME280::GetMeasures(&temp, &pressure, &humidity, &dew_point))
+    {
+        bme280_ready = true;
+
+        ProcessMeasure(temp, time);
+        ProcessMeasure(pressure, time);
+        ProcessMeasure(humidity, time);
+        ProcessMeasure(dew_point, time);
+    }
+
+    if (bme280_ready)
+    {
+        HC12::TransmitString("Device asleep now\r");
+
+        EnergySwitch::TurnOff();
+    }
+}
+
+
+void Device::ProcessMeasure(const Measure &measure, uint time)
+{
+    if (measure.correct)
+    {
+        InterCom::Send(measure, time);
+    }
 }
