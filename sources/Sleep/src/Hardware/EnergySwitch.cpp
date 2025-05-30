@@ -59,7 +59,7 @@ void EnergySwitch::TurnOff()
       Wakeup Time = 0.4 ms  * WakeUpCounter
       Therefore, with wake-up counter =  0xFFFF  = 65,535
          Wakeup Time =  0.4 ms *  65,535 = ~ 26 sec. */
-    HAL_RTCEx_SetWakeUpTimer_IT(&RTCHandle, 0xFFF, RTC_WAKEUPCLOCK_RTCCLK_DIV16);
+    HAL_RTCEx_SetWakeUpTimer_IT(&RTCHandle, 0xFFFF, RTC_WAKEUPCLOCK_RTCCLK_DIV16);
 
     /* Reactivate LSI clock if it has been stopped by system reset */
     if (LL_RCC_LSI_IsReady() != 1)

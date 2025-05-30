@@ -13,6 +13,7 @@
 namespace Device
 {
     static bool bme280_ready = false;
+    static bool bh1750_ready = false;
 
     static void ProcessMeasure(const Measure &, uint time);
 }
@@ -34,8 +35,6 @@ void Device::Init()
     BH1750::IsInitialized();
     
     InterCom::SetDirection((Direction::E)(Direction::HC12));
-
-    HC12::TransmitString("Device enabled\r");
 }
 
 
@@ -45,6 +44,7 @@ void Device::Update()
     Measure pressure;
     Measure humidity;
     Measure dew_point;
+    Measure illuminace;
 
     uint time = TIME_MS;
 
@@ -58,10 +58,15 @@ void Device::Update()
         ProcessMeasure(dew_point, time);
     }
 
-    if (bme280_ready)
+    if (BH1750::GetMeasure(&illuminace))
     {
-        HC12::TransmitString("Device asleep now\r");
+        bh1750_ready = true;
 
+        ProcessMeasure(illuminace, time);
+    }
+
+    if (bme280_ready &&bh1750_ready)
+    {
         EnergySwitch::TurnOff();
     }
 }
