@@ -25,7 +25,7 @@ void Device::Init()
 
     EnergySwitch::Init();
 
-    Timer::Delay(25);
+    Timer::Delay(2000);
 
     BME280::Init();                    // ѕытаемс€ инициализировать датчик давлени€
 
@@ -40,6 +40,8 @@ void Device::Init()
 
 void Device::Update()
 {
+    static int counter = 0;
+
     Measure temp;
     Measure pressure;
     Measure humidity;
@@ -65,7 +67,7 @@ void Device::Update()
         ProcessMeasure(illuminace, time);
     }
 
-    if (bme280_ready &&bh1750_ready)
+    if (counter++ > 20 || (bme280_ready && bh1750_ready))
     {
         EnergySwitch::TurnOff();
     }
