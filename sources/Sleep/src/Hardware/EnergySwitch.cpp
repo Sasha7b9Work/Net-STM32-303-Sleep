@@ -107,24 +107,44 @@ void EnergySwitch::MX_RTC_Init(void)
     handleRTC.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
     handleRTC.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
 
-    HAL_RTC_Init(&handleRTC);
+    // Включаем тактирование LSE
+    __HAL_RCC_LSE_CONFIG(RCC_LSE_ON);
 
-    // Устанавливаем начальное время и дату
+    while (__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY) == RESET)
+    {
+        // Ждем готовности LSE
+    }
+
+    // Настраиваем RTC на LSE
+    __HAL_RCC_RTC_CONFIG(RCC_RTCCLKSOURCE_LSE);
+    __HAL_RCC_RTC_ENABLE();
+
+    if (HAL_RTC_Init(&handleRTC) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
+
+    // Устанавливаем начальное время
     sTime.Hours = 0;
     sTime.Minutes = 0;
     sTime.Seconds = 0;
-    sTime.SubSeconds = 0;
     sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
     sTime.StoreOperation = RTC_STOREOPERATION_RESET;
 
-    HAL_RTC_SetTime(&handleRTC, &sTime, RTC_FORMAT_BIN);
+    if (HAL_RTC_SetTime(&handleRTC, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
 
     sDate.WeekDay = RTC_WEEKDAY_MONDAY;
     sDate.Month = RTC_MONTH_JANUARY;
     sDate.Date = 1;
     sDate.Year = 0;
 
-    HAL_RTC_SetDate(&handleRTC, &sDate, RTC_FORMAT_BIN);
+    if (HAL_RTC_SetDate(&handleRTC, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
 }
 
 
