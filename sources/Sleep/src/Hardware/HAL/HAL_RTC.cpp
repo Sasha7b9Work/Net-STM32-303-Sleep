@@ -26,7 +26,10 @@ void HAL_RTC::Init()
 {
     __HAL_RCC_RTC_ENABLE();
 
-    HAL_RTC_Init(&handleRTC);
+    if (HAL_RTC_Init(&handleRTC) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
 
 #define VALUE_FOR_RTC 0x644
 
