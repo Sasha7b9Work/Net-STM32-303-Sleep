@@ -29,11 +29,12 @@ void EnergySwitch::Init()
 {
     pinPower.Init();
 
-    pinPower.ToHi();        // Подаём напряжение на этот вывод, чтобы источник питания запитал все узлы устройства
+    pinPower.ToLow();
+    pinPower.ToHi();
+    
+    MX_RTC_Init();
 
     Config_AlarmRTC();
-
-    MX_RTC_Init();
 }
 
 
@@ -46,6 +47,7 @@ void EnergySwitch::TurnOff()
 void EnergySwitch::Config_AlarmRTC(void)
 {
     RTC_AlarmTypeDef sAlarm;
+    std::memset(&sAlarm, 0, sizeof(sAlarm));
 
     // Получаем текущее время
     RTC_TimeTypeDef sTime = { 0 };
@@ -54,7 +56,7 @@ void EnergySwitch::Config_AlarmRTC(void)
     HAL_RTC_GetDate(&handleRTC, &sDate, RTC_FORMAT_BIN);
 
     // Добавляем 1 секунду к текущему времени
-    sTime.Seconds += 1;
+    sTime.Seconds += 10;
     if (sTime.Seconds > 59 )
     {
         sTime.Seconds = 0;
@@ -128,7 +130,7 @@ void EnergySwitch::MX_RTC_Init(void)
 
 void EnergySwitch::Enter_Standby_With_RTC_Alarm()
 {
-    RTC_Wakeup_Config_On_Seconds(2);
+    RTC_Wakeup_Config_On_Seconds(10);
 
     // Разрешаем пробуждение от RTC
     __HAL_RTC_WAKEUPTIMER_EXTI_ENABLE_IT();

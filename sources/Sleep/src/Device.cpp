@@ -24,7 +24,7 @@ void Device::Init()
     HAL::Init();
 
     Timer::Delay(3000);
-
+    
     EnergySwitch::Init();
 
     // Проверяем, было ли пробуждение от Standby
