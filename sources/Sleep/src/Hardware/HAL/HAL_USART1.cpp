@@ -139,9 +139,7 @@ void HAL_USART1::Send(uint8 byte)
 
 void HAL_USART1::Send(const void *buffer, int size)
 {
-    HAL_StatusTypeDef result = HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 100);
-
-    result = result;
+    HAL_UART_Transmit(&handleUART, (const uint8 *)buffer, (uint16)size, 100);
 }
 
 
@@ -151,11 +149,6 @@ void HAL_USART1::ReceiveCallback()
     static int pointer = 0;
 
     bytes[pointer++] = (char)recv_byte;
-
-    if (pointer > 40)
-    {
-        pointer = pointer;
-    }
 
     recv_buffer.Append(recv_byte);
 

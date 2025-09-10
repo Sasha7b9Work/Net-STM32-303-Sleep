@@ -23,9 +23,19 @@ void Device::Init()
 {
     HAL::Init();
 
+    Timer::Delay(3000);
+
     EnergySwitch::Init();
 
-    Timer::Delay(2000);
+    // Проверяем, было ли пробуждение от Standby
+    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
+    {
+        // Сбрасываем флаг пробуждения
+        __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
+
+        // Выполняем действия после пробуждения
+        // 
+    }
 
     BME280::Init();                    // Пытаемся инициализировать датчик давления
 

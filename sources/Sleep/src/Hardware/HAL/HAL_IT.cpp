@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
+#include "Hardware/EnergySwitch.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -110,6 +111,20 @@ void ADC1_2_IRQHandler(void)
 void EXTI0_IRQHandler(void)
 {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
+}
+
+// Обработчик прерывания RTC Wakeup Timer
+void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef * /*hrtc*/)
+{
+    // Вызывается после пробуждения от Wakeup Timer
+}
+
+// Обработчик EXTI для Wakeup Timer
+void RTC_WKUP_IRQHandler(void)
+{
+    HAL_RTCEx_WakeUpTimerIRQHandler((RTC_HandleTypeDef *)EnergySwitch::handle);
+
+    __HAL_RTC_WAKEUPTIMER_EXTI_CLEAR_FLAG();
 }
 
 #ifdef __cplusplus

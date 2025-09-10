@@ -6,15 +6,22 @@
 #include "Hardware/HAL/HAL.h"
 #include <stm32f3xx_ll_rtc.h>
 #include <stm32f3xx_ll_rcc.h>
+#include <cstring>
 
 
 namespace EnergySwitch
 {
-    static void RTC_Config(void);
+    static void Config_AlarmRTC(void);
 
-    static void SystemPower_Config(void);
+    static void MX_RTC_Init(void);
 
-    static RTC_HandleTypeDef RTCHandle;
+    static RTC_HandleTypeDef handleRTC;
+
+    void *handle = &handleRTC;
+
+    static void Enter_Standby_With_RTC_Alarm();
+
+    static void RTC_Wakeup_Config_On_Seconds(int num_secs);
 }
 
 
@@ -23,117 +30,148 @@ void EnergySwitch::Init()
     pinPower.Init();
 
     pinPower.ToHi();        // Подаём напряжение на этот вывод, чтобы источник питания запитал все узлы устройства
+
+    Config_AlarmRTC();
+
+    MX_RTC_Init();
 }
 
 
 void EnergySwitch::TurnOff()
 {
-    /* Configure RTC */
-    RTC_Config();
+    Enter_Standby_With_RTC_Alarm();
+}
 
-    /* The Following Wakeup sequence is highly recommended prior to each Standby mode entry
-      mainly  when using more than one wakeup source this is to not miss any wakeup event.
-      - Disable all used wakeup sources,
-      - Clear all related wakeup flags,
-      - Re-enable all used wakeup sources,
-      - Enter the Standby mode.
-    */
-    /* Disable all used wakeup sources*/
-    HAL_RTCEx_DeactivateWakeUpTimer(&RTCHandle);
 
-    /* Re-enable all used wakeup sources*/
-    /* ## Setting the Wake up time ############################################*/
-    /* RTC Wakeup Interrupt Generation:
-      the wake-up counter is set to its maximum value to yield the longest
-      stand-by time to let the current reach its lowest operating point.
-      The maximum value is 0xFFFF, corresponding to about 26 sec. when
-      RTC_WAKEUPCLOCK_RTCCLK_DIV = RTCCLK_Div16 = 16
+void EnergySwitch::Config_AlarmRTC(void)
+{
+    RTC_AlarmTypeDef sAlarm;
 
-      Wakeup Time Base = (RTC_WAKEUPCLOCK_RTCCLK_DIV /(LSI))
-      Wakeup Time = Wakeup Time Base * WakeUpCounter
-        = (RTC_WAKEUPCLOCK_RTCCLK_DIV /(LSI)) * WakeUpCounter
-        ==> WakeUpCounter = Wakeup Time / Wakeup Time Base
+    // Получаем текущее время
+    RTC_TimeTypeDef sTime = { 0 };
+    RTC_DateTypeDef sDate = { 0 };
+    HAL_RTC_GetTime(&handleRTC, &sTime, RTC_FORMAT_BIN);
+    HAL_RTC_GetDate(&handleRTC, &sDate, RTC_FORMAT_BIN);
 
-      To configure the wake up timer to 26s the WakeUpCounter is set to 0xFFFF:
-      Wakeup Time Base = 16 /(~40 kHz RC) = ~0.4 ms
-      Wakeup Time = 0.4 ms  * WakeUpCounter
-      Therefore, with wake-up counter =  0xFFFF  = 65,535
-         Wakeup Time =  0.4 ms *  65,535 = ~ 26 sec. */
-    HAL_RTCEx_SetWakeUpTimer_IT(&RTCHandle, 0xFFFF / 5, RTC_WAKEUPCLOCK_RTCCLK_DIV16);
-
-    /* Reactivate LSI clock if it has been stopped by system reset */
-    if (LL_RCC_LSI_IsReady() != 1)
+    // Добавляем 1 секунду к текущему времени
+    sTime.Seconds += 1;
+    if (sTime.Seconds > 59 )
     {
-        LL_RCC_LSI_Enable();
-        while (LL_RCC_LSI_IsReady() != 1)
+        sTime.Seconds = 0;
+        sTime.Minutes += 1;
+
+        if (sTime.Minutes > 59)
         {
+            sTime.Minutes = 0;
+            sTime.Hours += 1;
         }
     }
 
-    /* Configure the system Power */
-    SystemPower_Config();
+    // Настраиваем будильник
+    sAlarm.AlarmTime.Hours = sTime.Hours;
+    sAlarm.AlarmTime.Minutes = sTime.Minutes;
+    sAlarm.AlarmTime.Seconds = sTime.Seconds;
+    sAlarm.AlarmTime.SubSeconds = 0;
+    sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+    sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
 
-    /* Check and handle if the system was resumed from StandBy mode */
-    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
+    sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
+    sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
+    sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+    sAlarm.AlarmDateWeekDay = 1;
+    sAlarm.Alarm = RTC_ALARM_A;
+
+    // Устанавливаем будильник с прерыванием
+    if (HAL_RTC_SetAlarm_IT(&handleRTC, &sAlarm, RTC_FORMAT_BIN) != HAL_OK)
     {
-        /* Clear Standby flag */
-        __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
+        HAL::ErrorHandler();
     }
 
-    /* Clear Wake-up timer flag if it is set    */
-    /* Flag will set after exiting from Standby */
-    if (LL_RTC_IsActiveFlag_WUT(RTC) == 1)
-    {
-        LL_RTC_ClearFlag_WUT(RTC);
-    }
+    // Разрешаем пробуждение от RTC Alarm для STM32F3
+    HAL_RTCEx_SetWakeUpTimer_IT(&handleRTC, 0, RTC_WAKEUPCLOCK_CK_SPRE_16BITS);
+}
 
-    /* Clear all related wakeup flags */
-    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 
-    HAL_Delay(5000);
+void EnergySwitch::MX_RTC_Init(void)
+{
+    RTC_TimeTypeDef sTime = { 0 };
+    RTC_DateTypeDef sDate = { 0 };
 
-    pinPower.ToLow();
+    handleRTC.Instance = RTC;
+    handleRTC.Init.HourFormat = RTC_HOURFORMAT_24;
+    handleRTC.Init.AsynchPrediv = 127;
+    handleRTC.Init.SynchPrediv = 255;
+    handleRTC.Init.OutPut = RTC_OUTPUT_DISABLE;
+    handleRTC.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
+    handleRTC.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
 
-    /* Enter the Standby mode */
+    HAL_RTC_Init(&handleRTC);
+
+    // Устанавливаем начальное время и дату
+    sTime.Hours = 0;
+    sTime.Minutes = 0;
+    sTime.Seconds = 0;
+    sTime.SubSeconds = 0;
+    sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+    sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+
+    HAL_RTC_SetTime(&handleRTC, &sTime, RTC_FORMAT_BIN);
+
+    sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+    sDate.Month = RTC_MONTH_JANUARY;
+    sDate.Date = 1;
+    sDate.Year = 0;
+
+    HAL_RTC_SetDate(&handleRTC, &sDate, RTC_FORMAT_BIN);
+}
+
+
+void EnergySwitch::Enter_Standby_With_RTC_Alarm()
+{
+    RTC_Wakeup_Config_On_Seconds(2);
+
+    // Разрешаем пробуждение от RTC
+    __HAL_RTC_WAKEUPTIMER_EXTI_ENABLE_IT();
+    __HAL_RTC_WAKEUPTIMER_EXTI_ENABLE_RISING_EDGE();
+
+    // Настраиваем выводы для низкого потребления
+    GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+
+    // Настраиваем все GPIO порты
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
+    // Отключаем тактирование GPIO
+    __HAL_RCC_GPIOA_CLK_DISABLE();
+    __HAL_RCC_GPIOB_CLK_DISABLE();
+    __HAL_RCC_GPIOC_CLK_DISABLE();
+    __HAL_RCC_GPIOD_CLK_DISABLE();
+    __HAL_RCC_GPIOE_CLK_DISABLE();
+    __HAL_RCC_GPIOF_CLK_DISABLE();
+
+    // Входим в Standby mode
     HAL_PWR_EnterSTANDBYMode();
 }
 
 
-void EnergySwitch::SystemPower_Config(void)
+void EnergySwitch::RTC_Wakeup_Config_On_Seconds(int num_sec)
 {
-    /* Enable Power Control clock */
-    __HAL_RCC_PWR_CLK_ENABLE();
+    // Отключаем Wakeup Timer перед настройкой
+    HAL_RTCEx_DeactivateWakeUpTimer(&handleRTC);
 
-    /* Enable write access to Backup domain */
-    HAL_PWR_EnableBkUpAccess();
-}
+    // Рассчитываем значение для 1 часа
+    // Для RTC_WAKEUPCLOCK_CK_SPRE_16BITS: период = (WakeUpCounter + 1) * 1 сек
+    uint32_t wakeup_counter = (uint)(num_sec - 1); // 3600 секунд = 1 час
 
-
-
-void EnergySwitch::RTC_Config(void)
-{
-    const uint RTC_ASYNCH_PREDIV = 0x7F;
-    const uint RTC_SYNCH_PREDIV = 0x137;    // 40 kHz RC/127 - 1
-
-    /* Configure RTC */
-    RTCHandle.Instance = RTC;
-    /* Set the RTC time base to 1s */
-    /* Configure RTC prescaler and RTC data registers as follow:
-      - Hour Format = Format 24
-      - Asynch Prediv = Value according to source clock
-      - Synch Prediv = Value according to source clock
-      - OutPut = Output Disable
-      - OutPutPolarity = High Polarity
-      - OutPutType = Open Drain */
-    RTCHandle.Init.HourFormat = RTC_HOURFORMAT_24;
-    RTCHandle.Init.AsynchPrediv = RTC_ASYNCH_PREDIV;
-    RTCHandle.Init.SynchPrediv = RTC_SYNCH_PREDIV;
-    RTCHandle.Init.OutPut = RTC_OUTPUT_DISABLE;
-    RTCHandle.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
-    RTCHandle.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
-    if (HAL_RTC_Init(&RTCHandle) != HAL_OK)
+    // Настраиваем Wakeup Timer
+    if (HAL_RTCEx_SetWakeUpTimer_IT(&handleRTC, wakeup_counter, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK)
     {
-        /* Initialization Error */
         HAL::ErrorHandler();
     }
 }
