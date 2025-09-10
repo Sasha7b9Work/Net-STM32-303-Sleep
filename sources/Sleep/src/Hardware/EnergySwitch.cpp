@@ -33,10 +33,15 @@ void EnergySwitch::Init()
 
     pinPower.ToLow();
     pinPower.ToHi();
+    
+    Timer::Delay(500);
+    
+    pinPower.ToLow();
+    pinPower.ToHi();
 
     RTC_Config();
 
-    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
+//    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 }
 
 
@@ -61,6 +66,9 @@ void EnergySwitch::RTC_Config()
     /* Check if the system was resumed from StandBy mode */
     if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
     {
+//        __HAL_RCC_BACKUPRESET_FORCE();
+//        __HAL_RCC_BACKUPRESET_RELEASE();
+        
         /* Clear StandBy flag */
         __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
 
@@ -86,7 +94,7 @@ void EnergySwitch::RTC_Config()
 //        __HAL_RCC_BACKUPRESET_RELEASE();
 
 #define RTC_ASYNCH_PREDIV    0x7F
-#define RTC_SYNCH_PREDIV     0x0130
+#define RTC_SYNCH_PREDIV     0xFF
 
         /* Set the RTC time base to 1s */
         /* Configure RTC prescaler and RTC data registers as follows:
