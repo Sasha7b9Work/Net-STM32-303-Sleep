@@ -9,14 +9,6 @@
 #include <cstring>
 
 
-namespace EnergySwitch
-{
-    static void RTC_Config();
-
-    static void Enter_Standby_With_RTC_Alarm();
-}
-
-
 void EnergySwitch::Init()
 {
     pinPower.Init();
@@ -29,136 +21,41 @@ void EnergySwitch::Init()
     pinPower.ToLow();
     pinPower.ToHi();
 
-    RTC_Config();
-
-//    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 }
 
 
 void EnergySwitch::TurnOff()
 {
-    Enter_Standby_With_RTC_Alarm();
-}
+    HAL_RTCEx_DeactivateWakeUpTimer((RTC_HandleTypeDef *)HAL_RTC::handle);
 
+    HAL_RTCEx_SetWakeUpTimer_IT((RTC_HandleTypeDef *)HAL_RTC::handle, 20, RTC_WAKEUPCLOCK_CK_SPRE_16BITS);
 
-void EnergySwitch::RTC_Config()
-{
-    return;
-    /* Allow Access to RTC Backup domaine */
-    HAL_PWR_EnableBkUpAccess();
-
-    /* Check if the system was resumed from StandBy mode */
-    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
-    {       
-        /* Clear StandBy flag */
-        __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
-
-        /* Disable the write protection for RTC registers */
-        __HAL_RTC_WRITEPROTECTION_DISABLE((RTC_HandleTypeDef *)HAL_RTC::handle);
-
-        /* Wait for RTC APB registers synchronisation (needed after start-up from Reset)*/
-        if (HAL_RTC_WaitForSynchro((RTC_HandleTypeDef *)HAL_RTC::handle) != HAL_OK)
+    /* Reactivate LSI clock if it has been stopped by system reset */
+    if (LL_RCC_LSI_IsReady() != 1)
+    {
+        LL_RCC_LSI_Enable();
+        while (LL_RCC_LSI_IsReady() != 1)
         {
-            /* Initialization Error */
-            HAL::ErrorHandler();
         }
-
-        /* Enable the write protection for RTC registers */
-        __HAL_RTC_WRITEPROTECTION_ENABLE((RTC_HandleTypeDef *)HAL_RTC::handle);
-        /* No need to configure the RTC as the RTC config(clock source, enable,
-        prescaler,...) are kept after wake-up from STANDBY */
     }
-    else
+
+    /* Check and handle if the system was resumed from StandBy mode */
+    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
     {
-        __HAL_RCC_BACKUPRESET_FORCE();
-        __HAL_RCC_BACKUPRESET_RELEASE();
+        /* Clear Standby flag */
+        __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
     }
-}
 
-
-void EnergySwitch::Enter_Standby_With_RTC_Alarm()
-{
-    IWDG_HandleTypeDef hiwdg;
-
-    hiwdg.Instance = IWDG;
-    hiwdg.Init.Prescaler = IWDG_PRESCALER_4;
-    hiwdg.Init.Window = 4095;
-    hiwdg.Init.Reload = 4095;
-    if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+    /* Clear Wake-up timer flag if it is set    */
+    /* Flag will set after exiting from Standby */
+    if (LL_RTC_IsActiveFlag_WUT(RTC) == 1)
     {
-        HAL::ErrorHandler();
+        LL_RTC_ClearFlag_WUT(RTC);
     }
 
-    RTC_TimeTypeDef sTime;
-    RTC_DateTypeDef sDate;
-    RTC_AlarmTypeDef sAlarm;
+    /* Clear all related wakeup flags */
+    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 
-    std::memset(&sTime, 0, sizeof(sTime));
-    std::memset(&sDate, 0, sizeof(sDate));
-    std::memset(&sAlarm, 0, sizeof(sAlarm));
-
-    RTC_HandleTypeDef *hrtc = (RTC_HandleTypeDef *)(HAL_RTC::handle);
-
-    hrtc->Instance = RTC;
-    hrtc->Init.HourFormat = RTC_HOURFORMAT_24;
-    hrtc->Init.AsynchPrediv = 127;
-    hrtc->Init.SynchPrediv = 255;
-    hrtc->Init.OutPut = RTC_OUTPUT_DISABLE;
-    hrtc->Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
-    hrtc->Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
-    if (HAL_RTC_Init(hrtc) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
-
-    /* USER CODE BEGIN Check_RTC_BKUP */
-
-    /* USER CODE END Check_RTC_BKUP */
-
-    /** Initialize RTC and set the Time and Date
-    */
-    sTime.Hours = 0x0;
-    sTime.Minutes = 0x0;
-    sTime.Seconds = 0x0;
-    sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-    sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-    if (HAL_RTC_SetTime(hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
-    sDate.WeekDay = RTC_WEEKDAY_MONDAY;
-    sDate.Month = RTC_MONTH_JANUARY;
-    sDate.Date = 0x1;
-    sDate.Year = 0x0;
-
-    if (HAL_RTC_SetDate(hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
-
-    /** Enable the Alarm A
-    */
-    sAlarm.AlarmTime.Hours = 0x0;
-    sAlarm.AlarmTime.Minutes = 0x1;
-    sAlarm.AlarmTime.Seconds = 0x0;
-    sAlarm.AlarmTime.SubSeconds = 0x0;
-    sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-    sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
-    sAlarm.AlarmMask = RTC_ALARMMASK_HOURS | RTC_ALARMMASK_MINUTES
-        | RTC_ALARMMASK_SECONDS;
-    sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
-    sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
-    sAlarm.AlarmDateWeekDay = 0x1;
-    sAlarm.Alarm = RTC_ALARM_A;
-    if (HAL_RTC_SetAlarm(hrtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
-
-    /** Enable the WakeUp
-    */
-    if (HAL_RTCEx_SetWakeUpTimer(hrtc, 100, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK)
-    {
-        HAL::ErrorHandler();
-    }
+    /* Enter the Standby mode */
+    HAL_PWR_EnterSTANDBYMode();
 }
