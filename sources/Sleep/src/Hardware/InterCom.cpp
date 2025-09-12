@@ -17,9 +17,9 @@ namespace InterCom
 {
     static Direction::E direction = Direction::_None;
 
-    static Buffer<20> CreateMessage(const Measure &measure)
+    static Buffer<16> CreateMessage(const Measure &measure)
     {
-        Buffer<20> message;
+        Buffer<16> message;
 
         message[0] = 'A';                           // offset 0
         message[1] = 'B';
@@ -32,11 +32,11 @@ namespace InterCom
 
         float value = (float)measure.GetDouble();
 
-        std::memcpy(&message[12], &value, 4);       // offset 16
+        std::memcpy(&message[8], &value, 4);       // offset 16
 
-        uint hash = Math::CalculateCRC(&value, 4);
+        uint hash = Math::CalculateCRC(&message[0], 12);
 
-        std::memcpy(&message[8], &hash, 4);         // offset 12
+        std::memcpy(&message[12], &hash, 4);         // offset 12
 
         return message;
     }
@@ -55,9 +55,9 @@ void InterCom::Send(const Measure &measure, uint timeMS)
 
     if (direction & Direction::HC12)
     {
-        Buffer<20> data = CreateMessage(measure);
+        Buffer<16> data = CreateMessage(measure);
 
-        HC12::Transmit(data.Data(), 20);
+        HC12::Transmit(data.Data(), 16);
     }
 
 #ifdef GUI

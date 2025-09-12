@@ -79,7 +79,7 @@ void Device::Update()
 
     if (counter++ > 20 || (bme280_ready && bh1750_ready))
     {
-        EnergySwitch::TurnOff();
+//        EnergySwitch::TurnOff();
     }
 }
 
