@@ -27,7 +27,7 @@ void Device::Init()
     
     EnergySwitch::Init();
 
-    BME280::Init();                    // ѕытаемс€ инициализировать датчик давлени€
+    BME280::Init();
 
     BH1750::Init();
 
