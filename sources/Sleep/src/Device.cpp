@@ -12,8 +12,8 @@
 
 namespace Device
 {
-    static bool bme280_ready = false;
-    static bool bh1750_ready = false;
+    static int bme280_ready = 0;
+    static int bh1750_ready = 0;
 
     static bool ProcessMeasure(const Measure &, uint time);
 }
@@ -57,7 +57,7 @@ void Device::Update()
             ProcessMeasure(humidity, time) &&
             ProcessMeasure(dew_point, time))
         {
-            bme280_ready = true;
+            bme280_ready++;
         }
     }
 
@@ -65,11 +65,11 @@ void Device::Update()
     {
         if (ProcessMeasure(illuminace, time))
         {
-            bh1750_ready = true;
+            bh1750_ready++;
         }
     }
 
-    if (counter++ > 1000 || (bme280_ready && bh1750_ready))
+    if (counter++ > 1000 || (bme280_ready > 3 && bh1750_ready > 3))
     {
         EnergySwitch::TurnOff();
     }
