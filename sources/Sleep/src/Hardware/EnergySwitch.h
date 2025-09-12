@@ -7,6 +7,4 @@ namespace EnergySwitch
     void Init();
 
     void TurnOff();
-
-    extern void *handle;   // RTC_HandleTypeDef
 }

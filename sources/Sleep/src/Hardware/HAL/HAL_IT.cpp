@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
-#include "Hardware/EnergySwitch.h"
 #include <stm32f3xx_hal.h>
 
 
@@ -116,7 +115,7 @@ void EXTI0_IRQHandler(void)
 // Обработчик EXTI для Wakeup Timer
 void RTC_WKUP_IRQHandler(void)
 {
-    HAL_RTCEx_WakeUpTimerIRQHandler((RTC_HandleTypeDef *)EnergySwitch::handle);
+    HAL_RTCEx_WakeUpTimerIRQHandler((RTC_HandleTypeDef *)HAL_RTC::handle);
 }
 
 #ifdef __cplusplus

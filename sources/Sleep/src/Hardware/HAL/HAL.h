@@ -73,6 +73,8 @@ namespace HAL_RTC
     PackedTime GetTime();
 
     void SetTime(const PackedTime &);
+
+    extern void *handle;       // RTC_HandleTypeDef
 }
 
 

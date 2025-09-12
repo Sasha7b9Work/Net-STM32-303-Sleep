@@ -15,13 +15,9 @@ namespace EnergySwitch
 
     static void Enter_Standby_With_RTC_Alarm();
 
-    static RTC_HandleTypeDef handleRTC;
-
     static RTC_AlarmTypeDef RTC_AlarmStructure;
 
     static RTC_TimeTypeDef time;
-
-    void *handle = &handleRTC;
 }
 
 
@@ -59,8 +55,6 @@ void EnergySwitch::RTC_Config()
     /* Allow Access to RTC Backup domaine */
     HAL_PWR_EnableBkUpAccess();
 
-    handleRTC.Instance = RTC;
-
     /* Check if the system was resumed from StandBy mode */
     if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
     {
@@ -71,17 +65,17 @@ void EnergySwitch::RTC_Config()
         __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
 
         /* Disable the write protection for RTC registers */
-        __HAL_RTC_WRITEPROTECTION_DISABLE(&handleRTC);
+        __HAL_RTC_WRITEPROTECTION_DISABLE((RTC_HandleTypeDef *)HAL_RTC::handle);
 
         /* Wait for RTC APB registers synchronisation (needed after start-up from Reset)*/
-        if (HAL_RTC_WaitForSynchro(&handleRTC) != HAL_OK)
+        if (HAL_RTC_WaitForSynchro((RTC_HandleTypeDef *)HAL_RTC::handle) != HAL_OK)
         {
             /* Initialization Error */
             HAL::ErrorHandler();
         }
 
         /* Enable the write protection for RTC registers */
-        __HAL_RTC_WRITEPROTECTION_ENABLE(&handleRTC);
+        __HAL_RTC_WRITEPROTECTION_ENABLE((RTC_HandleTypeDef *)HAL_RTC::handle);
         /* No need to configure the RTC as the RTC config(clock source, enable,
         prescaler,...) are kept after wake-up from STANDBY */
     }
@@ -90,7 +84,7 @@ void EnergySwitch::RTC_Config()
 
 void EnergySwitch::Enter_Standby_With_RTC_Alarm()
 {
-    HAL_RTC_GetTime(&handleRTC, &time, RTC_FORMAT_BIN);
+    HAL_RTC_GetTime((RTC_HandleTypeDef *)HAL_RTC::handle, &time, RTC_FORMAT_BIN);
 
     time.Minutes += 1;
 
@@ -115,7 +109,7 @@ void EnergySwitch::Enter_Standby_With_RTC_Alarm()
     RTC_AlarmStructure.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
     RTC_AlarmStructure.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY | RTC_ALARMMASK_HOURS | RTC_ALARMMASK_MINUTES;
     RTC_AlarmStructure.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
-    if (HAL_RTC_SetAlarm_IT(&handleRTC, &RTC_AlarmStructure, RTC_FORMAT_BIN) != HAL_OK)
+    if (HAL_RTC_SetAlarm_IT((RTC_HandleTypeDef *)HAL_RTC::handle, &RTC_AlarmStructure, RTC_FORMAT_BIN) != HAL_OK)
     {
         /* Initialization Error */
         HAL::ErrorHandler();

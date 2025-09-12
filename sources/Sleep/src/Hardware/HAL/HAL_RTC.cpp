@@ -19,6 +19,8 @@ namespace HAL_RTC
             RTC_OUTPUT_TYPE_OPENDRAIN
         }
     };
+
+    void *handle = (void *)&handleRTC;
 }
 
 
