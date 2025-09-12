@@ -47,20 +47,12 @@ void EnergySwitch::TurnOff()
 
 void EnergySwitch::RTC_Config()
 {
-    /* Enable Power Clock*/
-    __HAL_RCC_PWR_CLK_ENABLE();
-
-    __HAL_RCC_RTC_ENABLE();
-
     /* Allow Access to RTC Backup domaine */
     HAL_PWR_EnableBkUpAccess();
 
     /* Check if the system was resumed from StandBy mode */
-    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
-    {
-//        __HAL_RCC_BACKUPRESET_FORCE();
-//        __HAL_RCC_BACKUPRESET_RELEASE();
-        
+    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
+    {       
         /* Clear StandBy flag */
         __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
 
@@ -78,6 +70,11 @@ void EnergySwitch::RTC_Config()
         __HAL_RTC_WRITEPROTECTION_ENABLE((RTC_HandleTypeDef *)HAL_RTC::handle);
         /* No need to configure the RTC as the RTC config(clock source, enable,
         prescaler,...) are kept after wake-up from STANDBY */
+    }
+    else
+    {
+        __HAL_RCC_BACKUPRESET_FORCE();
+        __HAL_RCC_BACKUPRESET_RELEASE();
     }
 }
 
