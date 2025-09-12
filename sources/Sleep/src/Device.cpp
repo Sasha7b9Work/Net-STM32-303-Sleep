@@ -15,7 +15,7 @@ namespace Device
     static bool bme280_ready = false;
     static bool bh1750_ready = false;
 
-    static void ProcessMeasure(const Measure &, uint time);
+    static bool ProcessMeasure(const Measure &, uint time);
 }
 
 
@@ -52,19 +52,21 @@ void Device::Update()
 
     if (BME280::GetMeasures(&temp, &pressure, &humidity, &dew_point))
     {
-        bme280_ready = true;
-
-        ProcessMeasure(temp, time);
-        ProcessMeasure(pressure, time);
-        ProcessMeasure(humidity, time);
-        ProcessMeasure(dew_point, time);
+        if (ProcessMeasure(temp, time) &&
+            ProcessMeasure(pressure, time) &&
+            ProcessMeasure(humidity, time) &&
+            ProcessMeasure(dew_point, time))
+        {
+            bme280_ready = true;
+        }
     }
 
     if (BH1750::GetMeasure(&illuminace))
     {
-        bh1750_ready = true;
-
-        ProcessMeasure(illuminace, time);
+        if (ProcessMeasure(illuminace, time))
+        {
+            bh1750_ready = true;
+        }
     }
 
     if (counter++ > 1000 || (bme280_ready && bh1750_ready))
@@ -74,10 +76,14 @@ void Device::Update()
 }
 
 
-void Device::ProcessMeasure(const Measure &measure, uint time)
+bool Device::ProcessMeasure(const Measure &measure, uint time)
 {
     if (measure.correct)
     {
         InterCom::Send(measure, time);
+
+        return true;
     }
+
+    return false;
 }
