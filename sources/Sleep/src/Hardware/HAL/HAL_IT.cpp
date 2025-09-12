@@ -112,12 +112,6 @@ void EXTI0_IRQHandler(void)
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
 }
 
-// Обработчик EXTI для Wakeup Timer
-void RTC_WKUP_IRQHandler(void)
-{
-    HAL_RTCEx_WakeUpTimerIRQHandler((RTC_HandleTypeDef *)HAL_RTC::handle);
-}
-
 #ifdef __cplusplus
 }
 #endif

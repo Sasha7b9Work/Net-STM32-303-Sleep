@@ -14,10 +14,6 @@ namespace EnergySwitch
     static void RTC_Config();
 
     static void Enter_Standby_With_RTC_Alarm();
-
-    static RTC_AlarmTypeDef RTC_AlarmStructure;
-
-    static RTC_TimeTypeDef time;
 }
 
 
@@ -47,11 +43,12 @@ void EnergySwitch::TurnOff()
 
 void EnergySwitch::RTC_Config()
 {
+    return;
     /* Allow Access to RTC Backup domaine */
     HAL_PWR_EnableBkUpAccess();
 
     /* Check if the system was resumed from StandBy mode */
-    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
+    if (__HAL_PWR_GET_FLAG(PWR_FLAG_SB) != RESET)
     {       
         /* Clear StandBy flag */
         __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
@@ -81,55 +78,87 @@ void EnergySwitch::RTC_Config()
 
 void EnergySwitch::Enter_Standby_With_RTC_Alarm()
 {
-    HAL_RTC_GetTime((RTC_HandleTypeDef *)HAL_RTC::handle, &time, RTC_FORMAT_BIN);
+    IWDG_HandleTypeDef hiwdg;
 
-    time.Minutes += 1;
-
-    if (time.Minutes > 59)
+    hiwdg.Instance = IWDG;
+    hiwdg.Init.Prescaler = IWDG_PRESCALER_4;
+    hiwdg.Init.Window = 4095;
+    hiwdg.Init.Reload = 4095;
+    if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
     {
-        time.Minutes = 0;
-        time.Hours += 1;
-
-        if (time.Hours > 23)
-        {
-            time.Hours = 0;
-            time.Minutes = 1;
-        }
-    }
-
-    RTC_AlarmStructure.Alarm = RTC_ALARM_A;
-    RTC_AlarmStructure.AlarmTime.TimeFormat = time.TimeFormat;
-    RTC_AlarmStructure.AlarmTime.Hours = time.Hours;
-    RTC_AlarmStructure.AlarmTime.Minutes = time.Minutes;
-    RTC_AlarmStructure.AlarmTime.Seconds = time.Seconds;
-    RTC_AlarmStructure.AlarmDateWeekDay = 31;
-    RTC_AlarmStructure.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
-    RTC_AlarmStructure.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY | RTC_ALARMMASK_HOURS | RTC_ALARMMASK_MINUTES;
-    RTC_AlarmStructure.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
-    if (HAL_RTC_SetAlarm_IT((RTC_HandleTypeDef *)HAL_RTC::handle, &RTC_AlarmStructure, RTC_FORMAT_BIN) != HAL_OK)
-    {
-        /* Initialization Error */
         HAL::ErrorHandler();
     }
 
-    /* The Following Wakeup sequence is highly recommended prior to each Standby mode entry
-       mainly  when using more than one wakeup source this is to not miss any wakeup event.
-         - Disable all used wakeup sources,
-         - Clear all related wakeup flags,
-         - Re-enable all used wakeup sources,
-         - Enter the Standby mode.
+    RTC_TimeTypeDef sTime;
+    RTC_DateTypeDef sDate;
+    RTC_AlarmTypeDef sAlarm;
+
+    std::memset(&sTime, 0, sizeof(sTime));
+    std::memset(&sDate, 0, sizeof(sDate));
+    std::memset(&sAlarm, 0, sizeof(sAlarm));
+
+    RTC_HandleTypeDef *hrtc = (RTC_HandleTypeDef *)(HAL_RTC::handle);
+
+    hrtc->Instance = RTC;
+    hrtc->Init.HourFormat = RTC_HOURFORMAT_24;
+    hrtc->Init.AsynchPrediv = 127;
+    hrtc->Init.SynchPrediv = 255;
+    hrtc->Init.OutPut = RTC_OUTPUT_DISABLE;
+    hrtc->Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
+    hrtc->Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
+    if (HAL_RTC_Init(hrtc) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
+
+    /* USER CODE BEGIN Check_RTC_BKUP */
+
+    /* USER CODE END Check_RTC_BKUP */
+
+    /** Initialize RTC and set the Time and Date
     */
+    sTime.Hours = 0x0;
+    sTime.Minutes = 0x0;
+    sTime.Seconds = 0x0;
+    sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+    sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+    if (HAL_RTC_SetTime(hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
+    sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+    sDate.Month = RTC_MONTH_JANUARY;
+    sDate.Date = 0x1;
+    sDate.Year = 0x0;
 
-    /*#### Disable all used wakeup sources: WKUP pin ###########################*/
-    HAL_PWR_DisableWakeUpPin(PWR_WAKEUP_PIN1);
+    if (HAL_RTC_SetDate(hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
 
-    /*#### Clear all related wakeup flags ######################################*/
-    /* Clear PWR wake up Flag */
-    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
+    /** Enable the Alarm A
+    */
+    sAlarm.AlarmTime.Hours = 0x0;
+    sAlarm.AlarmTime.Minutes = 0x1;
+    sAlarm.AlarmTime.Seconds = 0x0;
+    sAlarm.AlarmTime.SubSeconds = 0x0;
+    sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+    sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
+    sAlarm.AlarmMask = RTC_ALARMMASK_HOURS | RTC_ALARMMASK_MINUTES
+        | RTC_ALARMMASK_SECONDS;
+    sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
+    sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+    sAlarm.AlarmDateWeekDay = 0x1;
+    sAlarm.Alarm = RTC_ALARM_A;
+    if (HAL_RTC_SetAlarm(hrtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
 
-    /* Enable WKUP pin */
-    HAL_PWR_EnableWakeUpPin(PWR_WAKEUP_PIN1);
-
-    /* Request to enter STANDBY mode */
-    HAL_PWR_EnterSTANDBYMode();
+    /** Enable the WakeUp
+    */
+    if (HAL_RTCEx_SetWakeUpTimer(hrtc, 100, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK)
+    {
+        HAL::ErrorHandler();
+    }
 }
