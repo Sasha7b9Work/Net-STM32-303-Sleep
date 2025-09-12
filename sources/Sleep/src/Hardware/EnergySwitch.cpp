@@ -19,9 +19,7 @@ namespace EnergySwitch
 
     static RTC_AlarmTypeDef RTC_AlarmStructure;
 
-    static RTC_TimeTypeDef RTC_TimeStructure;
-
-    static RTC_DateTypeDef RTC_DateStructure;
+    static RTC_TimeTypeDef time;
 
     void *handle = &handleRTC;
 }
@@ -87,60 +85,32 @@ void EnergySwitch::RTC_Config()
         /* No need to configure the RTC as the RTC config(clock source, enable,
         prescaler,...) are kept after wake-up from STANDBY */
     }
-    else
-    {
-        /* Reset Backup Domaine */
-//        __HAL_RCC_BACKUPRESET_FORCE();
-//        __HAL_RCC_BACKUPRESET_RELEASE();
-
-#define RTC_ASYNCH_PREDIV    0x7F
-#define RTC_SYNCH_PREDIV     0xFF
-
-        /* Set the RTC time base to 1s */
-        /* Configure RTC prescaler and RTC data registers as follows:
-        - Hour Format = Format 24
-        - Asynch Prediv = Value according to source clock
-        - Synch Prediv = Value according to source clock
-        - OutPut = Output Disable
-        - OutPutPolarity = High Polarity
-        - OutPutType = Open Drain */
-        handleRTC.Init.HourFormat = RTC_HOURFORMAT_24;
-        handleRTC.Init.AsynchPrediv = RTC_ASYNCH_PREDIV;
-        handleRTC.Init.SynchPrediv = RTC_SYNCH_PREDIV;
-        handleRTC.Init.OutPut = RTC_OUTPUT_DISABLE;
-        handleRTC.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
-        handleRTC.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
-        if (HAL_RTC_Init(&handleRTC) != HAL_OK)
-        {
-            /* Initialization Error */
-            HAL::ErrorHandler();
-        }
-
-        /* Set the time to 01h 00mn 00s AM */
-        RTC_TimeStructure.TimeFormat = RTC_HOURFORMAT12_AM;
-        RTC_TimeStructure.Hours = 0x01;
-        RTC_TimeStructure.Minutes = 0x00;
-        RTC_TimeStructure.Seconds = 0x00;
-        if (HAL_RTC_SetTime(&handleRTC, &RTC_TimeStructure, RTC_FORMAT_BCD) == HAL_ERROR)
-        {
-            /* Initialization Error */
-            HAL::ErrorHandler();
-        }
-    }
 }
 
 
 void EnergySwitch::Enter_Standby_With_RTC_Alarm()
 {
-    HAL_RTC_GetTime(&handleRTC, &RTC_TimeStructure, RTC_FORMAT_BIN);
-    HAL_RTC_GetDate(&handleRTC, &RTC_DateStructure, RTC_FORMAT_BIN);
+    HAL_RTC_GetTime(&handleRTC, &time, RTC_FORMAT_BIN);
 
-    /* Set the alarm to current time + 5s */
+    time.Minutes += 1;
+
+    if (time.Minutes > 59)
+    {
+        time.Minutes = 0;
+        time.Hours += 1;
+
+        if (time.Hours > 23)
+        {
+            time.Hours = 0;
+            time.Minutes = 1;
+        }
+    }
+
     RTC_AlarmStructure.Alarm = RTC_ALARM_A;
-    RTC_AlarmStructure.AlarmTime.TimeFormat = RTC_TimeStructure.TimeFormat;
-    RTC_AlarmStructure.AlarmTime.Hours = RTC_TimeStructure.Hours;
-    RTC_AlarmStructure.AlarmTime.Minutes = RTC_TimeStructure.Minutes;
-    RTC_AlarmStructure.AlarmTime.Seconds = (uint8)((RTC_TimeStructure.Seconds + 10) % 60);
+    RTC_AlarmStructure.AlarmTime.TimeFormat = time.TimeFormat;
+    RTC_AlarmStructure.AlarmTime.Hours = time.Hours;
+    RTC_AlarmStructure.AlarmTime.Minutes = time.Minutes;
+    RTC_AlarmStructure.AlarmTime.Seconds = time.Seconds;
     RTC_AlarmStructure.AlarmDateWeekDay = 31;
     RTC_AlarmStructure.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
     RTC_AlarmStructure.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY | RTC_ALARMMASK_HOURS | RTC_ALARMMASK_MINUTES;

@@ -77,9 +77,9 @@ void Device::Update()
         ProcessMeasure(illuminace, time);
     }
 
-    if (counter++ > 20 || (bme280_ready && bh1750_ready))
+    if (counter++ > 1000 || (bme280_ready && bh1750_ready))
     {
-//        EnergySwitch::TurnOff();
+        EnergySwitch::TurnOff();
     }
 }
 
