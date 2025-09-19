@@ -16,15 +16,17 @@ namespace Device
     static int bh1750_ready = 0;
 
     static bool ProcessMeasure(const Measure &, uint time);
+    
+    static TimeMeterMS meter;
 }
 
 
 void Device::Init()
 {
     HAL::Init();
-
-    Timer::Delay(3000);
     
+    meter.Reset();
+   
     EnergySwitch::Init();
 
     BME280::Init();
@@ -71,6 +73,10 @@ void Device::Update()
 
     if (counter++ > 1000 || (bme280_ready > 3 && bh1750_ready > 3))
     {
+        while(meter.ElapsedTime() < 5000)
+        {
+        }
+        
         EnergySwitch::TurnOff();
     }
 }

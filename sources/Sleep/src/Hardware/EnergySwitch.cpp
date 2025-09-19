@@ -28,7 +28,7 @@ void EnergySwitch::TurnOff()
 {
     HAL_RTCEx_DeactivateWakeUpTimer((RTC_HandleTypeDef *)HAL_RTC::handle);
 
-    HAL_RTCEx_SetWakeUpTimer_IT((RTC_HandleTypeDef *)HAL_RTC::handle, 57, RTC_WAKEUPCLOCK_CK_SPRE_16BITS);
+    HAL_RTCEx_SetWakeUpTimer_IT((RTC_HandleTypeDef *)HAL_RTC::handle, 25, RTC_WAKEUPCLOCK_CK_SPRE_16BITS);
 
     /* Reactivate LSI clock if it has been stopped by system reset */
     if (LL_RCC_LSI_IsReady() != 1)
